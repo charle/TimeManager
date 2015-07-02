@@ -1,5 +1,6 @@
 package com.jing.du.common.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,5 +24,11 @@ public class DateUtils {
         }else{
             return String.valueOf(tempDate);
         }
+    }
+
+    public static String getStringOfDate(Date date){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String str=sdf.format(date);
+        return str;
     }
 }

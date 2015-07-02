@@ -32,4 +32,5 @@
     <string name="choose_tag">选择标签</string>
     <string name="category">分类</string>
     <string name="tag">标签</string>
+    <string name="output">导出你的日记</string>
 </resources>

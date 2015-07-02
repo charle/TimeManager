@@ -34,7 +34,6 @@ public class HomeFragment extends Fragment implements CommonInit {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1:
-                    mHandler.sendEmptyMessage(2);
                     if(!StringUtils.isViewEmpty(progressBar)){
                         progressBar.setVisibility(View.INVISIBLE);
                     }

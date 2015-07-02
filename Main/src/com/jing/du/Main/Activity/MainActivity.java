@@ -21,6 +21,7 @@ import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.jing.du.Main.Adapter.DiaryAdapter;
 import com.jing.du.Main.BackgroundTask.MyAsyncTask;
 import com.jing.du.Main.FragmentView.HomeFragment;
+import com.jing.du.Main.FragmentView.SettingFragment;
 import com.jing.du.Main.FragmentView.TagFragment;
 import com.jing.du.Main.Model.Category;
 import com.jing.du.Main.Model.Diary;
@@ -59,8 +60,9 @@ public class MainActivity extends FragmentActivity implements
     private List<Fragment> mTabs = new ArrayList<Fragment>();
     private HomeFragment homeFragment;
     private TagFragment tagFragment;
+    private SettingFragment settingFragment;
 
-    private MyFragment  fragmentTwo, fragmentFour;
+    private MyFragment  fragmentTwo;
     private MyFragmentPagerAdapter mAdapter;
     private List<ChangeColorIconWithText> mTabIndicators = new ArrayList<ChangeColorIconWithText>();
 
@@ -92,7 +94,7 @@ public class MainActivity extends FragmentActivity implements
         homeFragment = new HomeFragment();
         fragmentTwo = MyFragment.newInstance(R.layout.list);
         tagFragment = new TagFragment();
-        fragmentFour = MyFragment.newInstance(R.layout.setting);
+        settingFragment = new SettingFragment();
 
         mTabIndicators.add(indicatorHome);
         mTabIndicators.add(indicatorList);
@@ -102,7 +104,7 @@ public class MainActivity extends FragmentActivity implements
         mTabs.add(homeFragment);
         mTabs.add(fragmentTwo);
         mTabs.add(tagFragment);
-        mTabs.add(fragmentFour);
+        mTabs.add(settingFragment);
 
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), mTabs);
         viewpager.setAdapter(mAdapter);
