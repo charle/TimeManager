@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.jing.du.common.view.XListView
+            android:id="@+id/ll_main_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@null"/>
+
+    <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/pb_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:indeterminateDrawable="@drawable/iamge_progress"/>
+
+    <!--<include layout="@layout/lay_progress_bar" android:id="@+id/lv_progress_bar"/>-->
+
+</RelativeLayout>

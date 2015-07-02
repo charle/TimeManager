@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TableLayout
+            android:id="@+id/tl_one"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                    android:padding="@dimen/padding_micro"
+                    android:text="@string/category"/>
+
+            <TextView
+                    android:id="@+id/category_name"
+                    android:text="@string/category"
+                    android:padding="@dimen/padding_micro"
+                    android:textColor="@color/bbutton_danger"/>
+
+            <TextView
+                    android:padding="@dimen/padding_micro"
+                    android:text="@string/category"/>
+
+            <TextView
+                    android:id="@+id/tag_name"
+                    android:padding="@dimen/padding_micro"
+                    android:textColor="@color/bbutton_danger"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="@string/begin_time"
+                    android:padding="@dimen/padding_micro"
+                    android:layout_span="1"/>
+            <TextView
+                    android:id="@+id/tv_begin_time"
+                    android:padding="@dimen/padding_micro"
+                    android:textColor="@color/bbutton_danger"
+                    android:layout_span="3"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="@string/end_time"
+                    android:padding="@dimen/padding_micro"
+                    android:layout_span="1"/>
+            <TextView
+                    android:id="@+id/tv_end_time"
+                    android:textColor="@color/bbutton_danger"
+                    android:padding="@dimen/padding_micro"
+                    android:layout_span="3"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="@string/diary_note"
+                    android:padding="@dimen/padding_micro"
+                    android:layout_span="1"/>
+            <TextView
+                    android:id="@+id/tv_note"
+                    android:textColor="@color/bbutton_danger"
+                    android:layout_column="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:padding="@dimen/padding_micro"
+                    android:layout_span="3"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

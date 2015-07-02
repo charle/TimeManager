@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:paddingTop="@dimen/padding_small"
+              android:layout_gravity="center_horizontal"
+              android:paddingBottom="@dimen/padding_small"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/tv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="46sp"
+            bootstrap:fa_icon="fa-calendar"
+            android:textColor="@color/bbutton_warning"/>
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize32"
+            android:text="@string/default_date"/>
+
+    <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_xlarger"
+            android:layout_marginTop="@dimen/padding_micro"
+            android:text="@string/default_month"/>
+
+    <com.jing.du.common.view.MyInnerListView
+            android:id="@+id/lv_taglist"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/padding_medium"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:divider="@null"/>
+
+    <ImageView
+            android:id="@+id/iv_category"
+            android:layout_width="@dimen/padding30"
+            android:layout_height="@dimen/padding30"
+            android:layout_marginRight="@dimen/padding_small"
+            android:layout_gravity="right"
+            android:src="@drawable/tv_icon"/>
+
+</LinearLayout>

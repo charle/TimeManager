@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/iv_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="220dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_bg"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                android:id="@+id/iv_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_bg"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/padding_large_negtive"
+                android:layout_marginRight="@dimen/padding_medium"
+                bootstrap:bt_width="@dimen/padding80"
+                bootstrap:bt_height="@dimen/padding80"
+                bootstrap:bt_image="@drawable/home_profile"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_name"
+                android:textSize="@dimen/textsize_medium"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding30"
+                android:textColor="#fff"
+                android:layout_marginRight="@dimen/padding_medium"
+                android:layout_alignTop="@id/iv_profile"
+                android:layout_toLeftOf="@id/iv_profile"
+                android:text="@string/default_text"/>
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tv_sentence"
+                android:textSize="@dimen/textsize_small"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_micro"
+                android:layout_marginRight="@dimen/padding_medium"
+                android:layout_below="@id/iv_profile"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/sample_text"/>
+    </RelativeLayout>
+
+    <LinearLayout
+            android:id="@+id/lv_create_new_diary"
+            android:layout_below="@id/rl_top"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+                android:id="@+id/tv_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="46sp"
+                bootstrap:fa_icon="fa-calendar"
+                android:textColor="@color/bbutton_info"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize32"
+                android:text="@string/default_today"/>
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_marginRight="@dimen/padding_medium"
+                android:textSize="@dimen/textsize_larger"
+                android:layout_weight="1"
+                android:text="@string/create_diary"/>
+    </LinearLayout>
+</RelativeLayout>

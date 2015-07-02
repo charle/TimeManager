@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_micro"
+            android:layout_marginTop="@dimen/padding_micro"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/et_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/padding_micro"
+                android:hint="@string/add_category_hint"
+                bootstrap:be_roundedCorners="true"
+                bootstrap:be_state="success">
+        </com.beardedhen.androidbootstrap.BootstrapEditText>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bt_add_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_micro"
+                android:layout_marginRight="@dimen/padding_micro"
+                bootstrap:bb_size="small"
+                bootstrap:bb_type="success"
+                android:layout_gravity="right"
+                android:text="@string/add_category">
+        </com.beardedhen.androidbootstrap.BootstrapButton>
+    </LinearLayout>
+
+    <ListView
+            android:id="@+id/lv_category"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/home_childdiv"
+            android:dividerHeight="2dp"
+            android:listSelector="@drawable/list_selector"
+            android:footerDividersEnabled="true">
+    </ListView>
+
+    <!--<include layout="@layout/lay_progress_bar" android:id="@+id/lv_progress_bar"/>-->
+
+</LinearLayout>

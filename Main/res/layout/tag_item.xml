@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/padding_medium"
+              android:paddingTop="@dimen/padding_micro"
+              android:paddingBottom="@dimen/padding_micro"
+              android:layout_width="fill_parent"
+              android:layout_height="match_parent">
+    <TextView
+            android:id="@+id/tv_name"
+            android:textColor="@color/bbutton_info"
+            android:layout_marginLeft="@dimen/padding_micro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    </TextView>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="@dimen/padding_micro"
+            android:orientation="horizontal">
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bt_edit_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_category"
+                bootstrap:bb_size="xsmall"
+                bootstrap:bb_type="warning"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bt_del_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/del_category"
+                bootstrap:bb_size="xsmall"
+                bootstrap:bb_type="danger"/>
+    </LinearLayout>
+</LinearLayout>

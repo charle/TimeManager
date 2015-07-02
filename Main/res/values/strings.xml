@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">时间管理</string>
+    <string name="list">列表</string>
+    <string name="star">标星</string>
+    <string name="home">主页</string>
+    <string name="setting">设置</string>
+    <string name="add_category">增加</string>
+    <string name="create_diary">记录生活点滴</string>
+    <string name="del_category">删除</string>
+    <string name="edit_category">编辑</string>
+    <string name="add_tag">增加标签</string>
+    <string name="default_text">暂无文字</string>
+    <string name="sample_text">如果你浪费了自己的年龄，那是挺可悲的。因为你的青春只能持续一点儿时间——很短的一点儿时间</string>
+    <string name="add_tag_info">请输入标签名字</string>
+    <string name="add_category_hint">请输入要增加的分类</string>
+    <string name="add_tag_hint">请输入要增加的标签</string>
+    <string name="empty_warning">分类标签不能为空</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="default_date">27</string>
+    <string name="default_today">今天</string>
+    <string name="default_month">6月</string>
+    <string name="begin_time">开始时间</string>
+    <string name="end_time">结束时间</string>
+    <string name="save_diary_item">保存日记条目</string>
+    <string name="new_diary_item">新建日记条目</string>
+    <string name="diary_item_list">条目列表</string>
+    <string name="diary_item_notice">添加备注</string>
+    <string name="diary_note">备注信息</string>
+    <string name="loading">正在加载...</string>
+    <string name="choose_tag">选择标签</string>
+    <string name="category">分类</string>
+    <string name="tag">标签</string>
+</resources>
