@@ -30,14 +30,38 @@
             android:layout_marginTop="@dimen/padding_micro"
             android:text="@string/default_month"/>
 
-    <com.jing.du.common.view.MyInnerListView
-            android:id="@+id/lv_taglist"
-            android:layout_width="fill_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/padding_medium"
-            android:layout_gravity="center_horizontal"
+    <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:divider="@null"/>
+            android:layout_marginRight="@dimen/padding_small"
+            android:layout_marginLeft="@dimen/padding_small"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/tv_diary_item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_larger"
+                android:layout_marginTop="@dimen/padding_micro"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+
+        <TextView
+                android:id="@+id/tv_diary_item2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_micro"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+
+        <TextView
+                android:id="@+id/tv_diary_item3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_micro"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+    </LinearLayout>
 
     <ImageView
             android:id="@+id/iv_category"

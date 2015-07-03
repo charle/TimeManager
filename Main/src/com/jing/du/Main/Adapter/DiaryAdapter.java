@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jing.du.Main.Model.Diary;
+import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
 import com.jing.du.Main.ViewHolder.HomeTagViewHolder;
@@ -37,22 +38,36 @@ public class DiaryAdapter extends MyBaseAdapter {
             convertView = mInflater.inflate(layoutId, null);
             myBaseHolder.views[0] = (TextView) convertView.findViewById(R.id.tv_date);
             myBaseHolder.views[1] = (TextView) convertView.findViewById(R.id.tv_month);
-            myBaseHolder.views[2] = (MyInnerListView) convertView.findViewById(R.id.lv_taglist);
-            myBaseHolder.views[3] = (ImageView) convertView.findViewById(R.id.iv_category);
+            myBaseHolder.views[2] = (TextView) convertView.findViewById(R.id.tv_diary_item1);
+            myBaseHolder.views[3] = (TextView) convertView.findViewById(R.id.tv_diary_item2);
+            myBaseHolder.views[4] = (TextView) convertView.findViewById(R.id.tv_diary_item3);
+            myBaseHolder.views[5] = (ImageView) convertView.findViewById(R.id.iv_category);
             convertView.setTag(myBaseHolder);
         }
 
         Diary tempDairy = (Diary) mData.get(position);
         ((TextView) myBaseHolder.views[0]).setText(DateUtils.getDateTian(tempDairy.getCreateTime()));
         ((TextView) myBaseHolder.views[1]).setText(DateUtils.getDateMonth(tempDairy.getCreateTime()));
-        ((ImageView) myBaseHolder.views[3]).setImageResource(R.drawable.app_icon);
+        ((ImageView) myBaseHolder.views[5]).setImageResource(R.drawable.app_icon);
         List<? extends DataSupport> diaryItems = ((Diary) mData.get(position)).getDiaryItemArrayList();
         if (!StringUtils.isListEmpty(diaryItems)) {
-            HomeTagViewHolder tagViewHolder = new HomeTagViewHolder();
-            DiaryItemAdapter diaryItemAdapter = new DiaryItemAdapter(mContext, diaryItems, tagViewHolder, R.layout.home_list_main_tag_item);
-            ((ListView) myBaseHolder.views[2]).setAdapter(diaryItemAdapter);
+            switch (diaryItems.size()){
+                case 3:
+                   ((TextView) myBaseHolder.views[4]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(2)));
+                case 2:
+                    ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
+                case 1:
+                    ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
+                    break;
+            }
         }
-
         return convertView;
+    }
+
+    private String getAllDiaryItemInfo(DiaryItem diaryItem){
+        String str = "";
+        DiaryItem item = DataSupport.find(DiaryItem.class,diaryItem.getId(),true);
+        str=item.getCategory().getName()+":"+item.getTag().getName()+" "+item.getBeginTime()+"~"+item.getEndTime();
+        return str;
     }
 }

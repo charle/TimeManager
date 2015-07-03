@@ -14,10 +14,10 @@ import com.jing.du.Main.R;
 import com.jing.du.common.Interface.CommonInit;
 import com.jing.du.common.file.TemplateEngine;
 import com.jing.du.common.utils.DateUtils;
-import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.utils.Toast;
 import org.litepal.crud.DataSupport;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class SettingFragment extends Fragment implements CommonInit {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1:
-                    Toast.show(getActivity(),"导出成功",1000);
+                    Toast.show(getActivity(), "导出成功", 1000);
                     break;
             }
         }
@@ -57,8 +57,9 @@ public class SettingFragment extends Fragment implements CommonInit {
                     @Override
                     public void run() {
                         List<Diary> diaryList = DataSupport.findAll(Diary.class, true);
-                        HashMap<String, String> data = new HashMap<String, String>();
+                        List<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
                         for (Diary diary : diaryList) {
+                            HashMap<String, String> data = new HashMap<String, String>();
                             data.put("createt_time", DateUtils.getStringOfDate(diary.getCreateTime()));
                             data.put("weather", "晴");
                             data.put("address", "上海市");
@@ -70,8 +71,9 @@ public class SettingFragment extends Fragment implements CommonInit {
                                 data.put("begin_time", diaryItem.getBeginTime());
                                 data.put("end_time", diaryItem.getEndTime());
                             }
+                            list.add(data);
                         }
-                        writeData("diary.tpl", "diary.md", getActivity(), data);
+                        writeData("diary.tpl", "diary.md", getActivity(), list);
                         mHandler.sendEmptyMessage(1);
 
                     }
@@ -86,7 +88,7 @@ public class SettingFragment extends Fragment implements CommonInit {
 
     }
 
-    private void writeData(String confPath, String filePath, Context context, HashMap<String, String> data) {
+    private void writeData(String confPath, String filePath, Context context, List<HashMap<String, String>> data) {
         TemplateEngine templateEngine = new TemplateEngine(confPath, context);
         // 设置换行符
         templateEngine.setEnter(System.getProperty("line.separator"));
@@ -96,8 +98,6 @@ public class SettingFragment extends Fragment implements CommonInit {
         String dataString = templateEngine.replaceArgs(template, data);
         // 追加写入配置文件
         templateEngine.writeConf(filePath, dataString, true);
-//        // 测试删除对象
-//        templateEngine.deleteObject("1");
     }
 
 }

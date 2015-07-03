@@ -4,6 +4,8 @@ import android.content.Context;
 import org.apache.http.util.EncodingUtils;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,24 +33,28 @@ public class TemplateEngine {
      * @param data
      * @return
      */
-    public static String replaceArgs(String template, Map<String, String> data) {
+    public static String replaceArgs(String template, List<HashMap<String, String>> list) {
         // sb用来存储替换过的内容，它会把多次处理过的字符串按源字符串序 存储起来。
         StringBuffer sb = new StringBuffer();
         try {
-            Pattern pattern = Pattern.compile("\\$\\{(.+?)\\}");
-            Matcher matcher = pattern.matcher(template);
-            while (matcher.find()) {
-                String name = matcher.group(1);// 键名
-                String value = (String) data.get(name);// 键值
-                if (value == null) {
-                    value = "";
-                } else {
-                    value = value.replaceAll("\\$", "\\\\\\$");
+            for (HashMap<String, String> data : list) {
+                Pattern pattern = Pattern.compile("\\$\\{(.+?)\\}");
+                Matcher matcher = pattern.matcher(template);
+                while (matcher.find()) {
+                    String name = matcher.group(1);// 键名
+                    String value = (String) data.get(name);// 键值
+                    if (value == null) {
+                        value = "";
+                    } else {
+                        value = value.replaceAll("\\$", "\\\\\\$");
+                    }
+                    matcher.appendReplacement(sb, value);
                 }
-                matcher.appendReplacement(sb, value);
+                // 最后还得要把尾串接到已替换的内容后面去，这里尾串为“，欢迎下次光临！”
+                matcher.appendTail(sb);
+                sb.append("\n\n");
             }
-            // 最后还得要把尾串接到已替换的内容后面去，这里尾串为“，欢迎下次光临！”
-            matcher.appendTail(sb);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,18 +92,15 @@ public class TemplateEngine {
      */
     public static void writeConf(String confPath, String stringData, boolean isAppend) {
         try {
-            FileOutputStream outStream = new FileOutputStream("/sdcard/" + confPath, true);
-            OutputStreamWriter writer = new OutputStreamWriter(outStream, "gb2312");
+            FileOutputStream outStream = new FileOutputStream("/mnt/sdcard/" + confPath, true);
+            OutputStreamWriter writer = new OutputStreamWriter(outStream, "utf8");
             writer.write(stringData);
-            writer.write("/n");
             writer.flush();
-            writer.close();//记得关闭
+            writer.close();
             outStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Toast.makeText(WebviewTencentActivity.this, "成功保存到sd卡", Toast.LENGTH_LONG).show();
-
     }
 
     public static String getConfPath() {
@@ -166,26 +169,6 @@ public class TemplateEngine {
     }
 
     /**
-     * 追加写入对象到配置文件
-     *
-     * @param data
-     */
-    public void addObject(Map<String, String> data) {
-        try {
-            // 读取模板文件
-            String tplName = confPath.substring(confPath.lastIndexOf(File.separator) + 1, confPath.lastIndexOf(".")) + ".tpl";
-            String tplPath = "";//待修改
-            String template = readTemplate(tplPath);
-            // 替换模板变量
-            String stringData = replaceArgs(template, data);
-            // 追加写入配置文件
-            writeConf(confPath, stringData, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * 删除对象（IO没有对文本直接删除的方法，先读出所有内容，过滤删除内容，重新写回文件。）
      *
      * @param id
@@ -200,24 +183,4 @@ public class TemplateEngine {
         writeConf(confPath, data, false);
     }
 
-    /**
-     * 修改对象（模板数据并非全是键值对，所以只能先删除再添加）
-     *
-     * @param id
-     * @param data
-     */
-    public void updateObject(String id, Map<String, String> data) {
-        // 读取配置文件
-        String dataString = readConf(confPath);
-        // 过滤删除内容
-        dataString = dataString.replace(getObject(id), "");
-        // 读取模板文件
-        String tplName = confPath.substring(confPath.lastIndexOf(File.separator) + 1, confPath.lastIndexOf(".")) + ".tpl";
-        String tplPath = "";
-        String template = readTemplate(tplPath);
-        // 替换模板变量
-        String newData = replaceArgs(template, data);
-        // 末尾追加新对象
-        writeConf(confPath, dataString + newData, false);
-    }
 }
