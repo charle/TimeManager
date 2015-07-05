@@ -6,7 +6,6 @@ import org.apache.http.util.EncodingUtils;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,11 +32,12 @@ public class TemplateEngine {
      * @param data
      * @return
      */
-    public static String replaceArgs(String template, List<HashMap<String, String>> list) {
+    public static String replaceArgs(String template, List<HashMap<String, Object>> list) {
         // sb用来存储替换过的内容，它会把多次处理过的字符串按源字符串序 存储起来。
         StringBuffer sb = new StringBuffer();
         try {
-            for (HashMap<String, String> data : list) {
+            for (HashMap<String, Object> data : list) {
+                //匹配${}
                 Pattern pattern = Pattern.compile("\\$\\{(.+?)\\}");
                 Matcher matcher = pattern.matcher(template);
                 while (matcher.find()) {
@@ -50,9 +50,9 @@ public class TemplateEngine {
                     }
                     matcher.appendReplacement(sb, value);
                 }
+
                 // 最后还得要把尾串接到已替换的内容后面去，这里尾串为“，欢迎下次光临！”
                 matcher.appendTail(sb);
-                sb.append("\n\n");
             }
 
         } catch (Exception e) {
@@ -90,9 +90,9 @@ public class TemplateEngine {
      * @param stringData
      * @param isAppend   是否追加写入
      */
-    public static void writeConf(String confPath, String stringData, boolean isAppend) {
+    public static void writeConf(String fileName, String stringData, boolean isAppend) {
         try {
-            FileOutputStream outStream = new FileOutputStream("/mnt/sdcard/" + confPath, true);
+            FileOutputStream outStream = new FileOutputStream("/mnt/sdcard/" + fileName, true);
             OutputStreamWriter writer = new OutputStreamWriter(outStream, "utf8");
             writer.write(stringData);
             writer.flush();

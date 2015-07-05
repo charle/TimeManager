@@ -15,9 +15,7 @@
     </wildcardResourcePatterns>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true">
-        <processorPath useClasspath="false">
-          <entry name="$PROJECT_DIR$/Main/libs/butterknife-6.1.0.jar" />
-        </processorPath>
+        <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
   </component>

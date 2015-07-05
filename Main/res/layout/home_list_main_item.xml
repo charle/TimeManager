@@ -41,7 +41,6 @@
                 android:id="@+id/tv_diary_item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textsize_larger"
                 android:layout_marginTop="@dimen/padding_micro"
                 android:singleLine="true"
                 android:ellipsize="end"/>
@@ -64,11 +63,11 @@
     </LinearLayout>
 
     <ImageView
-            android:id="@+id/iv_category"
-            android:layout_width="@dimen/padding30"
-            android:layout_height="@dimen/padding30"
+            android:id="@+id/iv_weather"
+            android:layout_width="@dimen/padding40"
+            android:layout_height="@dimen/padding40"
             android:layout_marginRight="@dimen/padding_small"
             android:layout_gravity="right"
-            android:src="@drawable/tv_icon"/>
+            android:src="@drawable/sunny"/>
 
 </LinearLayout>

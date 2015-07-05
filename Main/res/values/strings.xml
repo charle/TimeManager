@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="padding_micro">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+
     <string name="app_name">时间管理</string>
     <string name="list">列表</string>
     <string name="star">标星</string>
@@ -33,4 +39,9 @@
     <string name="category">分类</string>
     <string name="tag">标签</string>
     <string name="output">导出你的日记</string>
+    <string name="upload_evernote">上传到印象笔记</string>
+    <string name="set_password">设置密码</string>
+    <string name="create_time">创建时间</string>
+    <string name="create_adress">创建地点</string>
+    <string name="create_weather">当时天气</string>
 </resources>

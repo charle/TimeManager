@@ -3,3 +3,9 @@
 /.idea/workspace.xml
 .DS_Store
 /build
+/out
+/app
+*.iml
+/.idea
+/AndroidBootstrap
+/gen

@@ -12,6 +12,8 @@ import java.util.List;
 public class Diary extends DataSupport {
     private int id;
     private Date createTime;
+    private int weatherType;
+    private String address;
     private List<DiaryItem> diaryItemArrayList=new ArrayList<DiaryItem>();
 
     public int getId() {
@@ -28,6 +30,22 @@ public class Diary extends DataSupport {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public int getWeatherType() {
+        return weatherType;
+    }
+
+    public void setWeatherType(int weatherType) {
+        this.weatherType = weatherType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<DiaryItem> getDiaryItemArrayList() {

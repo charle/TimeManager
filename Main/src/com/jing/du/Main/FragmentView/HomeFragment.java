@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.jing.du.Main.Activity.CreateDiaryActivity;
+import com.jing.du.Main.Activity.DiaryDetailActivity;
 import com.jing.du.Main.Adapter.DiaryAdapter;
 import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.R;
@@ -28,13 +30,31 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment implements CommonInit {
 
+    AdapterView.OnItemClickListener listItemClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putInt("diary_id", diaryList.get(position-2).getId());
+            intent.putExtras(bundle);
+            intent.setClass(getActivity(), DiaryDetailActivity.class);
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+    };
+    AdapterView.OnItemLongClickListener listItemLongClick = new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            return false;
+        }
+    };
     private List<Diary> diaryList = new ArrayList<Diary>();
     private LinearLayout progressBar;
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1:
-                    if(!StringUtils.isViewEmpty(progressBar)){
+                    if (!StringUtils.isViewEmpty(progressBar)) {
                         progressBar.setVisibility(View.INVISIBLE);
                     }
                     break;
@@ -50,11 +70,12 @@ public class HomeFragment extends Fragment implements CommonInit {
         final XListView mListView = (XListView) mainView.findViewById(R.id.ll_main_listView);
         final ProgressBar pb_head = (ProgressBar) mainView.findViewById(R.id.pb_head);
         View addHeaderView = inflater.inflate(R.layout.home_list_header, null);
-        LinearLayout linearLayout = (LinearLayout)addHeaderView.findViewById(R.id.lv_create_new_diary);
+        LinearLayout linearLayout = (LinearLayout) addHeaderView.findViewById(R.id.lv_create_new_diary);
         ImageView mReplaceBackground = (ImageView) addHeaderView.findViewById(R.id.iv_bg);
         DiaryViewHolder diaryViewHolder = new DiaryViewHolder();
         mListView.setAdapter(new DiaryAdapter(getActivity(), diaryList, diaryViewHolder, R.layout.home_list_main_item));
         mListView.addHeaderView(addHeaderView);
+        mListView.setOnItemClickListener(listItemClick);
         XListView.IXListViewListener listViewListener = new XListView.IXListViewListener() {
             @Override
             public void onRefresh() {
@@ -91,13 +112,16 @@ public class HomeFragment extends Fragment implements CommonInit {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-				intent.setClass(getActivity().getApplicationContext(), CreateDiaryActivity.class);
-				startActivity(intent);
-				getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                intent.setClass(getActivity().getApplicationContext(), CreateDiaryActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
         mListView.setXListViewListener(listViewListener);
+        mListView.setOnItemClickListener(listItemClick);
+        mListView.setOnItemLongClickListener(listItemLongClick);
+
         return mainView;
     }
 
@@ -116,7 +140,6 @@ public class HomeFragment extends Fragment implements CommonInit {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
 
     @Override
     public void initData() {

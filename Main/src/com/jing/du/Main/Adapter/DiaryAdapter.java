@@ -11,6 +11,7 @@ import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
 import com.jing.du.Main.ViewHolder.HomeTagViewHolder;
+import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateUtils;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.view.MyBaseAdapter;
@@ -41,14 +42,14 @@ public class DiaryAdapter extends MyBaseAdapter {
             myBaseHolder.views[2] = (TextView) convertView.findViewById(R.id.tv_diary_item1);
             myBaseHolder.views[3] = (TextView) convertView.findViewById(R.id.tv_diary_item2);
             myBaseHolder.views[4] = (TextView) convertView.findViewById(R.id.tv_diary_item3);
-            myBaseHolder.views[5] = (ImageView) convertView.findViewById(R.id.iv_category);
+            myBaseHolder.views[5] = (ImageView) convertView.findViewById(R.id.iv_weather);
             convertView.setTag(myBaseHolder);
         }
 
         Diary tempDairy = (Diary) mData.get(position);
         ((TextView) myBaseHolder.views[0]).setText(DateUtils.getDateTian(tempDairy.getCreateTime()));
         ((TextView) myBaseHolder.views[1]).setText(DateUtils.getDateMonth(tempDairy.getCreateTime()));
-        ((ImageView) myBaseHolder.views[5]).setImageResource(R.drawable.app_icon);
+        ((ImageView) myBaseHolder.views[5]).setImageResource(CommonConstant.WEATHER_RESOUCE[0]);
         List<? extends DataSupport> diaryItems = ((Diary) mData.get(position)).getDiaryItemArrayList();
         if (!StringUtils.isListEmpty(diaryItems)) {
             switch (diaryItems.size()){
