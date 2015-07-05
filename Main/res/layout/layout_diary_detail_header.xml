@@ -1,71 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
+              android:layout_marginTop="@dimen/padding_small"
               android:layout_height="match_parent">
-
     <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/padding_small"
-            android:orientation="horizontal">
-        <TextView
-                android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/textsize_medium"
                 android:layout_marginRight="@dimen/padding_small"
-                android:text="@string/create_time"/>
+                android:layout_marginLeft="@dimen/padding_small"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize_medium"
+                    android:layout_marginRight="@dimen/padding_small"
+                    android:text="@string/create_time"/>
 
-        <TextView
-                android:id="@+id/tv_create_time"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/textsize_medium"
+            <TextView
+                    android:id="@+id/tv_create_time"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/textsize_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_marginRight="@dimen/padding_small"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:orientation="horizontal">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize_medium"
+                    android:layout_marginRight="@dimen/padding_small"
+                    android:text="@string/create_adress"/>
 
+            <TextView
+                    android:id="@+id/tv_create_address"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/textsize_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+    <ImageView
+            android:id="@+id/iv_create_weather"
+            android:src="@drawable/sunny"
+            android:scaleType="fitXY"
             android:layout_marginRight="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/padding_small"
-            android:orientation="horizontal">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/textsize_medium"
-                android:layout_marginRight="@dimen/padding_small"
-                android:text="@string/create_adress"/>
-
-        <TextView
-                android:id="@+id/tv_create_address"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/textsize_medium"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/padding_small"
-            android:orientation="horizontal">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/textsize_medium"
-                android:layout_marginRight="@dimen/padding_small"
-                android:text="@string/create_weather"/>
-
-        <ImageView
-                android:id="@+id/iv_create_weather"
-                android:src="@drawable/sunny"
-                android:scaleType="fitXY"
-                android:layout_width="@dimen/padding20"
-                android:layout_height="@dimen/padding20"/>
-
-    </LinearLayout>
+            android:layout_width="@dimen/padding30"
+            android:layout_gravity="right"
+            android:layout_height="@dimen/padding30"/>
 </LinearLayout>

@@ -6,4 +6,8 @@
 - 可以备份所有日记
 
 ## 功能页介绍
-- 
+![](images/main.png)
+![](images/new.png)
+![](images/detail.png)
+![](images/tags.png)
+
