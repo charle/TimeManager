@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyActivityTheme" parent="android:Theme.Light">
+        <item name="android:windowTitleBackgroundStyle">@style/windowTitleBackgroundStyle</item>
+        <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
+        <!--&lt;!&ndash; Window Header Height &ndash;&gt;-->
+        <item name="android:windowTitleSize">50dp</item>
+    </style>
+
+    <style name="windowTitleBackgroundStyle">
+        <item name="android:background">@drawable/title_bar</item>
+    </style>
+
+    <style name="windowTitleStyle">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:paddingLeft">25dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:gravity="center_vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="@dimen/padding30"
+            android:layout_height="@dimen/padding30"
+            android:layout_marginLeft="@dimen/padding_medium"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/app_icon"
+            android:scaleType="fitXY"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_marginLeft="@dimen/padding_small"
+            android:ellipsize="end"
+            android:textSize="@dimen/textsize20"
+            android:text="@string/app_name"/>
+
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:id="@+id/tv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="30sp"
+            bootstrap:fa_icon="fa-list"
+            android:textColor="@color/bbutton_warning_pressed"/>
+
+</LinearLayout>
