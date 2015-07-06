@@ -10,4 +10,3 @@
 ![](images/new.png)
 ![](images/detail.png)
 ![](images/tags.png)
-
