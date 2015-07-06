@@ -76,6 +76,7 @@ public class MainActivity extends FragmentActivity implements
     }
 
 
+
     private void afterInitView() {
         indicatorHome.setIconAlpha(HALF_ALPHA);
         initDatas();

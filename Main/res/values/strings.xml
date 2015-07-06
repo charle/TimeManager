@@ -44,4 +44,8 @@
     <string name="create_time">创建时间</string>
     <string name="create_adress">创建地点</string>
     <string name="create_weather">当时天气</string>
+    <string name="menu_delete">删除日记</string>
+    <string name="menu_edit">编辑日记</string>
+    <string name="menu_new">新建日记条目</string>
+    <string name="menu_save">保存日记</string>
 </resources>

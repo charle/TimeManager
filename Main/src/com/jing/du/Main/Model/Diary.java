@@ -2,6 +2,7 @@ package com.jing.du.Main.Model;
 
 import org.litepal.crud.DataSupport;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by charle-chen on 15/6/27.
  */
-public class Diary extends DataSupport {
+public class Diary extends DataSupport implements Serializable {
     private int id;
     private Date createTime;
     private int weatherType;

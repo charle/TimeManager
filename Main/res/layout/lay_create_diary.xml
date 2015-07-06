@@ -34,122 +34,129 @@
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/lv_add_diary_item"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_micro"
-                android:paddingRight="@dimen/padding_micro"
-                android:orientation="horizontal">
-            <TextView
-                    android:layout_width="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_micro"
-                    android:text="@string/choose_tag"/>
-            <Spinner
-                    android:id="@+id/sp_one"
-                    android:layout_width="wrap_content"
+                    android:paddingLeft="@dimen/padding_micro"
+                    android:paddingRight="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:text="@string/choose_tag"/>
+                <Spinner
+                        android:id="@+id/sp_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                </Spinner>
+                <Spinner
+                        android:id="@+id/sp_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
-            </Spinner>
-            <Spinner
-                    android:id="@+id/sp_two"
-                    android:layout_width="wrap_content"
+                    android:paddingLeft="@dimen/padding_micro"
+                    android:paddingRight="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:text="@string/begin_time"/>
+                <EditText
+                        android:id="@+id/et_begin_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false"/>
+
+                <com.beardedhen.androidbootstrap.FontAwesomeText
+                        android:id="@+id/tv_begin_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        bootstrap:fa_icon="fa-clock-o"
+                        android:textColor="@color/bbutton_info"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
-            </Spinner>
+                    android:paddingLeft="@dimen/padding_micro"
+                    android:paddingRight="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:text="@string/end_time"/>
+                <EditText
+                        android:id="@+id/et_end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false"/>
+
+                <com.beardedhen.androidbootstrap.FontAwesomeText
+                        android:id="@+id/tv_end_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        bootstrap:fa_icon="fa-clock-o"
+                        android:textColor="@color/bbutton_info"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_micro"
+                    android:paddingRight="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:layout_marginBottom="@dimen/padding_small"
+                        android:text="@string/diary_item_notice"/>
+
+                <EditText
+                        android:id="@+id/et_notice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minLines="2">
+                </EditText>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_micro"
+                    android:paddingRight="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/bt_create_diary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/save_diary_item"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        bootstrap:bb_type="success"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_micro"
-                android:paddingRight="@dimen/padding_micro"
-                android:orientation="horizontal">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_micro"
-                    android:text="@string/begin_time"/>
-            <EditText
-                    android:id="@+id/et_begin_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false"/>
-
-            <com.beardedhen.androidbootstrap.FontAwesomeText
-                    android:id="@+id/tv_begin_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="32sp"
-                    bootstrap:fa_icon="fa-clock-o"
-                    android:textColor="@color/bbutton_info"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_micro"
-                android:paddingRight="@dimen/padding_micro"
-                android:orientation="horizontal">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_micro"
-                    android:text="@string/end_time"/>
-            <EditText
-                    android:id="@+id/et_end_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false"/>
-
-            <com.beardedhen.androidbootstrap.FontAwesomeText
-                    android:id="@+id/tv_end_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="32sp"
-                    bootstrap:fa_icon="fa-clock-o"
-                    android:textColor="@color/bbutton_info"/>
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_micro"
-                android:paddingRight="@dimen/padding_micro"
-                android:orientation="horizontal">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_micro"
-                    android:layout_marginBottom="@dimen/padding_small"
-                    android:text="@string/diary_item_notice"/>
-
-            <EditText
-                    android:id="@+id/et_notice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minLines="2">
-            </EditText>
-        </LinearLayout>
-
-
-        <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_micro"
-                android:paddingRight="@dimen/padding_micro"
-                android:orientation="horizontal">
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                    android:id="@+id/bt_create_diary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save_diary_item"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    bootstrap:bb_type="success"/>
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

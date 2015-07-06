@@ -2,13 +2,14 @@ package com.jing.du.Main.Model;
 
 import org.litepal.crud.DataSupport;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by charle-chen on 15/6/25.
  */
-public class Category extends DataSupport {
+public class Category extends DataSupport implements Serializable{
     private int id;
     private String name;
     private List<DiaryItem> diaryItems = new ArrayList<DiaryItem>();

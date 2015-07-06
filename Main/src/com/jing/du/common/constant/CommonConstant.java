@@ -20,4 +20,8 @@ public class CommonConstant {
     public static final int RESOUCE_RAINNY = R.drawable.rainy;
 
     public static final int[] WEATHER_RESOUCE = {RESOUCE_SUNNY,RESOUCE_CLOUDY,RESOUCE_OVERCAST,RESOUCE_RAINNY};
+
+    public static final int GOTO_DIARY_DETAIL = 1;
+    public static final int GOTO_HOME_FLAGMENT = 2;
+    public static final int GOTO_CREATE_DIARY = 3;
 }

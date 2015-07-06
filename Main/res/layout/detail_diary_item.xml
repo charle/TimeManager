@@ -66,6 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:padding="@dimen/padding_micro"
+                    android:layout_marginRight="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"/>
         </TableRow>
 

@@ -1,9 +1,11 @@
 package com.jing.du.Main.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by charle-chen on 15/7/3.
  */
-public class DiaryItemTemplate {
+public class DiaryItemTemplate implements Serializable{
     private String categoryName,tagName;
     private String beginTime,endTime;
     private String note;

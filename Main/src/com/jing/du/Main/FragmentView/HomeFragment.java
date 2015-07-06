@@ -18,7 +18,7 @@ import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
 import com.jing.du.common.Interface.CommonInit;
-import com.jing.du.common.utils.StringUtils;
+import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.view.XListView;
 import org.litepal.crud.DataSupport;
 
@@ -30,15 +30,17 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment implements CommonInit {
 
+
     AdapterView.OnItemClickListener listItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent();
             Bundle bundle = new Bundle();
-            bundle.putInt("diary_id", diaryList.get(position-2).getId());
+            bundle.putInt("diary_id", diaryList.get(position - 2).getId());
+            bundle.putInt("list_position", position - 2);
             intent.putExtras(bundle);
             intent.setClass(getActivity(), DiaryDetailActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, CommonConstant.GOTO_DIARY_DETAIL);
             getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     };
@@ -48,15 +50,13 @@ public class HomeFragment extends Fragment implements CommonInit {
             return false;
         }
     };
+
+    DiaryAdapter diaryAdapter;
     private List<Diary> diaryList = new ArrayList<Diary>();
-    private LinearLayout progressBar;
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1:
-                    if (!StringUtils.isViewEmpty(progressBar)) {
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
                     break;
             }
         }
@@ -66,14 +66,14 @@ public class HomeFragment extends Fragment implements CommonInit {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Handler mHandler = new Handler();
         View mainView = inflater.inflate(R.layout.home, container, false);
-//        progressBar = (LinearLayout)mainView.findViewById(R.id.lv_progress_bar);
         final XListView mListView = (XListView) mainView.findViewById(R.id.ll_main_listView);
         final ProgressBar pb_head = (ProgressBar) mainView.findViewById(R.id.pb_head);
         View addHeaderView = inflater.inflate(R.layout.home_list_header, null);
         LinearLayout linearLayout = (LinearLayout) addHeaderView.findViewById(R.id.lv_create_new_diary);
         ImageView mReplaceBackground = (ImageView) addHeaderView.findViewById(R.id.iv_bg);
         DiaryViewHolder diaryViewHolder = new DiaryViewHolder();
-        mListView.setAdapter(new DiaryAdapter(getActivity(), diaryList, diaryViewHolder, R.layout.home_list_main_item));
+        diaryAdapter = new DiaryAdapter(getActivity(), diaryList, diaryViewHolder, R.layout.home_list_main_item);
+        mListView.setAdapter(diaryAdapter);
         mListView.addHeaderView(addHeaderView);
         mListView.setOnItemClickListener(listItemClick);
         XListView.IXListViewListener listViewListener = new XListView.IXListViewListener() {
@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment implements CommonInit {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity().getApplicationContext(), CreateDiaryActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, CommonConstant.GOTO_CREATE_DIARY);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
@@ -153,4 +153,26 @@ public class HomeFragment extends Fragment implements CommonInit {
         }).start();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CommonConstant.GOTO_DIARY_DETAIL:
+                if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
+                    int listPosition = data.getIntExtra("listPosition", 0);
+                    diaryList.remove(listPosition);
+                    diaryAdapter.notifyDataSetChanged();
+                }
+                break;
+            case CommonConstant.GOTO_CREATE_DIARY:
+                if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
+                    Diary tempDiary = (Diary)data.getSerializableExtra("diary");
+                    diaryList.add(tempDiary);
+                    diaryAdapter.notifyDataSetChanged();
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

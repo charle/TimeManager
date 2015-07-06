@@ -56,7 +56,6 @@
     <ImageView
             android:id="@+id/iv_create_weather"
             android:src="@drawable/sunny"
-            android:scaleType="fitXY"
             android:layout_marginRight="@dimen/padding_small"
             android:layout_width="@dimen/padding30"
             android:layout_gravity="right"

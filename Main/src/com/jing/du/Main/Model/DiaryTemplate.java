@@ -1,12 +1,13 @@
 package com.jing.du.Main.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by charle-chen on 15/7/3.
  */
-public class DiaryTemplate {
+public class DiaryTemplate implements Serializable{
     private String create_time;
     private String weather;
     private String address;

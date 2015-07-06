@@ -2,12 +2,13 @@ package com.jing.du.Main.Model;
 
 import org.litepal.crud.DataSupport;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 /**
  * Created by charle-chen on 15/6/29.
  */
-public class DiaryItem extends DataSupport {
+public class DiaryItem extends DataSupport implements Serializable{
     private int id;
     private String beginTime;
     private String endTime;

@@ -1,13 +1,17 @@
 package com.jing.du.Main.Activity;
 
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import butterknife.ButterKnife;
@@ -42,7 +46,6 @@ import java.util.List;
  */
 public class CreateDiaryActivity extends BaseActivity {
 
-
     @InjectView(R.id.lv_diary_item)
     MyInnerListView lvDiaryItem;
     @InjectView(R.id.sp_one)
@@ -61,6 +64,8 @@ public class CreateDiaryActivity extends BaseActivity {
     EditText etNotice;
     @InjectView(R.id.bt_create_diary)
     BootstrapButton btCreateDiary;
+    @InjectView(R.id.lv_add_diary_item)
+    LinearLayout lvAddDiaryItem;
 
     private List<Category> categoryList = new ArrayList<Category>();
     private int oneSpinnerId;
@@ -92,6 +97,7 @@ public class CreateDiaryActivity extends BaseActivity {
                     }
                     break;
                 case 2:
+                    lvAddDiaryItem.setVisibility(View.INVISIBLE);
                     Toast.show(CreateDiaryActivity.this, "成功", 1000);
                     addDiaryItemAdapter.notifyDataSetChanged();
                     break;
@@ -109,6 +115,8 @@ public class CreateDiaryActivity extends BaseActivity {
     }
 
     private void afterInitView() {
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
         initData();
     }
 
@@ -174,7 +182,9 @@ public class CreateDiaryActivity extends BaseActivity {
                     @Override
                     public void run() {
                         Category category = DataSupport.find(Category.class, oneSpinnerId);
-                        diary.setCreateTime(new Date());
+                        if (!StringUtils.isObjectEmpty(diary)) {
+                            diary.setCreateTime(new Date());
+                        }
                         DiaryItem diaryItem = new DiaryItem();
                         diaryItem.setBeginTime(etBeginTime.getText().toString());
                         diaryItem.setEndTime(etEndTime.getText().toString());
@@ -185,6 +195,7 @@ public class CreateDiaryActivity extends BaseActivity {
                         diaryItem.save();
                         diary.save();
                         diaryItems.add(diaryItem);
+                        diary.setDiaryItemArrayList(diaryItems);
                         mHandler.sendEmptyMessage(2);
                     }
                 }).start();
@@ -213,6 +224,29 @@ public class CreateDiaryActivity extends BaseActivity {
         if (!StringUtils.isObjectEmpty(categoryList.get(onePosition)) && !StringUtils.isListEmpty(categoryList.get(onePosition).getTagList())) {
             twoSpinnerId = categoryList.get(onePosition).getTagList().get(position).getId();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.new_diary, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                lvAddDiaryItem.setVisibility(View.VISIBLE);
+                break;
+            case R.id.action_save:
+                Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary",diary);
+                CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
+                CreateDiaryActivity.this.finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

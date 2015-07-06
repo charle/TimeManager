@@ -49,8 +49,21 @@ public class DiaryAdapter extends MyBaseAdapter {
         Diary tempDairy = (Diary) mData.get(position);
         ((TextView) myBaseHolder.views[0]).setText(DateUtils.getDateTian(tempDairy.getCreateTime()));
         ((TextView) myBaseHolder.views[1]).setText(DateUtils.getDateMonth(tempDairy.getCreateTime()));
-        ((ImageView) myBaseHolder.views[5]).setImageResource(CommonConstant.WEATHER_RESOUCE[0]);
+        ((ImageView) myBaseHolder.views[5]).setImageResource(CommonConstant.WEATHER_RESOUCE[tempDairy.getWeatherType()]);
         List<? extends DataSupport> diaryItems = ((Diary) mData.get(position)).getDiaryItemArrayList();
+        if(diaryItems.size()==1){
+            ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
+            ((TextView) myBaseHolder.views[3]).setText("");
+            ((TextView) myBaseHolder.views[4]).setText("");
+        }else if(diaryItems.size()==2){
+            ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
+            ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
+            ((TextView) myBaseHolder.views[4]).setText("");
+        }else if (diaryItems.size()>=3){
+            ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
+            ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
+            ((TextView) myBaseHolder.views[4]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(2)));
+        }
         if (!StringUtils.isListEmpty(diaryItems)) {
             switch (diaryItems.size()){
                 case 3:
@@ -58,7 +71,7 @@ public class DiaryAdapter extends MyBaseAdapter {
                 case 2:
                     ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
                 case 1:
-                    ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
+
                     break;
             }
         }
