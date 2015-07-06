@@ -101,7 +101,6 @@ public class DiaryDetailActivity extends BaseActivity {
         super.initEvent();
     }
 
-
     View.OnClickListener menuClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
