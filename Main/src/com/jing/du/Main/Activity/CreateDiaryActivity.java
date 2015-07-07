@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -147,7 +148,6 @@ public class CreateDiaryActivity extends BaseActivity {
                 Calendar calendar = Calendar.getInstance();
                 TimePickerDialog.OnTimeSetListener timeListener =
                         new TimePickerDialog.OnTimeSetListener() {
-
                             @Override
                             public void onTimeSet(TimePicker timerPicker,
                                                   int hourOfDay, int minute) {
@@ -239,7 +239,7 @@ public class CreateDiaryActivity extends BaseActivity {
                 lvAddDiaryItem.setVisibility(View.VISIBLE);
                 break;
             case R.id.action_save:
-                Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary",diary);
+                Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary", diary);
                 CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
                 CreateDiaryActivity.this.finish();
                 break;

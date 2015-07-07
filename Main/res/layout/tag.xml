@@ -45,7 +45,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="#00000000"
-            android:divider="@drawable/home_childdiv"
+            android:divider="@drawable/divider"
             android:dividerHeight="2dp"
             android:listSelector="@drawable/list_selector"
             android:footerDividersEnabled="true">

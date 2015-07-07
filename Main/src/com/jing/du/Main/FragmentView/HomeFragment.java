@@ -159,15 +159,21 @@ public class HomeFragment extends Fragment implements CommonInit {
         switch (requestCode) {
             case CommonConstant.GOTO_DIARY_DETAIL:
                 if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
-                    int listPosition = data.getIntExtra("listPosition", 0);
+                    int listPosition = data.getIntExtra("list_position", 0);
                     diaryList.remove(listPosition);
+                    diaryAdapter.notifyDataSetChanged();
+                }
+                if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY) {
+                    int listPosition = data.getIntExtra("list_position", 0);
+                    Diary diary = (Diary)data.getSerializableExtra("diary");
+                    diaryList.set(listPosition,diary);
                     diaryAdapter.notifyDataSetChanged();
                 }
                 break;
             case CommonConstant.GOTO_CREATE_DIARY:
                 if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
-                    Diary tempDiary = (Diary)data.getSerializableExtra("diary");
-                    diaryList.add(tempDiary);
+                    Diary tempDiary = (Diary) data.getSerializableExtra("diary");
+                    diaryList.add(0,tempDiary);
                     diaryAdapter.notifyDataSetChanged();
                 }
                 break;
