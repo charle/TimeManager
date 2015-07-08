@@ -13,4 +13,7 @@
         <attr name="text_size"></attr>
     </declare-styleable>
 
+    <declare-styleable name="swipelistviewstyle">
+        <attr name="right_width" format="dimension"></attr>
+    </declare-styleable>
 </resources>

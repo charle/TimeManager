@@ -17,11 +17,11 @@
                 android:paddingLeft="@dimen/padding_micro"
                 android:paddingRight="@dimen/padding_micro"
                 android:layout_marginBottom="@dimen/padding_small"
-                android:orientation="horizontal">
+                android:orientation="vertical">
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/padding_micro"
+                    android:layout_marginLeft="@dimen/padding_micro"
                     android:text="@string/diary_item_list"/>
 
             <com.jing.du.common.view.MyInnerListView

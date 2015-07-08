@@ -9,7 +9,7 @@ import com.jing.du.Main.Model.Tag;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.TagViewHolder;
 import com.jing.du.common.view.InputDialog;
-import com.jing.du.common.view.MyBaseAdapter;
+import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
 import org.litepal.crud.DataSupport;
 

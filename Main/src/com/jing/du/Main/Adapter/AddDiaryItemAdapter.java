@@ -8,7 +8,7 @@ import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.AddDiaryItemViewHolder;
 import com.jing.du.common.utils.StringUtils;
-import com.jing.du.common.view.MyBaseAdapter;
+import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
 import org.litepal.crud.DataSupport;
 

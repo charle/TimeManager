@@ -4,19 +4,16 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
-import com.jing.du.Main.ViewHolder.HomeTagViewHolder;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateUtils;
 import com.jing.du.common.utils.StringUtils;
-import com.jing.du.common.view.MyBaseAdapter;
+import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
-import com.jing.du.common.view.MyInnerListView;
 import org.litepal.crud.DataSupport;
 
 import java.util.List;
@@ -63,17 +60,6 @@ public class DiaryAdapter extends MyBaseAdapter {
             ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
             ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
             ((TextView) myBaseHolder.views[4]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(2)));
-        }
-        if (!StringUtils.isListEmpty(diaryItems)) {
-            switch (diaryItems.size()){
-                case 3:
-                   ((TextView) myBaseHolder.views[4]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(2)));
-                case 2:
-                    ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
-                case 1:
-
-                    break;
-            }
         }
         return convertView;
     }

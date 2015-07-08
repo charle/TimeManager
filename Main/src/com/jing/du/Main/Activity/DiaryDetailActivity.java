@@ -35,7 +35,6 @@ public class DiaryDetailActivity extends BaseActivity {
     private int diaryId;
     private Diary diary;
     private int listPosition;
-    private List<DiaryItem> diaryItemList = new ArrayList<DiaryItem>();
     private AddDiaryItemAdapter addDiaryItemAdapter;
     private Handler mHandler = new Handler() {
         @Override
@@ -77,7 +76,7 @@ public class DiaryDetailActivity extends BaseActivity {
         ((ImageView) headView.findViewById(R.id.iv_create_weather)).setImageResource(CommonConstant.WEATHER_RESOUCE[diary.getWeatherType()]);
         lvDiaryItem.addHeaderView(headView);
         AddDiaryItemViewHolder addDiaryItemViewHolder = new AddDiaryItemViewHolder();
-        addDiaryItemAdapter = new AddDiaryItemAdapter(this, diaryItemList, addDiaryItemViewHolder, R.layout.detail_diary_item);
+        addDiaryItemAdapter = new AddDiaryItemAdapter(this, diary.getDiaryItemArrayList(), addDiaryItemViewHolder, R.layout.detail_diary_item);
         lvDiaryItem.setAdapter(addDiaryItemAdapter);
     }
 
@@ -95,7 +94,6 @@ public class DiaryDetailActivity extends BaseActivity {
             @Override
             public void run() {
                 diary = DataSupport.find(Diary.class, diaryId, true);
-                diaryItemList = diary.getDiaryItemArrayList();
                 mHandler.sendEmptyMessage(1);
             }
         }).start();

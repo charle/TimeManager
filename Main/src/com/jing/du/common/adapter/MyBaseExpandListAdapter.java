@@ -1,4 +1,4 @@
-package com.jing.du.common.view;
+package com.jing.du.common.adapter;
 
 import android.content.Context;
 import android.view.View;

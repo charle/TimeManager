@@ -4,16 +4,20 @@ import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+import com.jing.du.Main.Adapter.DiaryEditSwipeAdapter;
 import com.jing.du.Main.Model.Diary;
+import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateUtils;
+import com.jing.du.common.view.SwipeListView;
 import org.litepal.crud.DataSupport;
 
 /**
@@ -22,34 +26,61 @@ import org.litepal.crud.DataSupport;
 public class EditDiaryActivity extends BaseActivity {
 
     private Diary diary;
+    private DiaryEditSwipeAdapter diaryEditSwipeAdapter;
     private int selectedSpinner;
-    @InjectView(R.id.tv_create_time)
-    TextView tvCreateTime;
-    @InjectView(R.id.sp_weather)
-    Spinner spWeather;
-    @InjectView(R.id.et_create_address)
-    EditText etCreateAddress;
-    @InjectView(R.id.lv_diary_item)
-    ListView lvDiaryItem;
+    private SwipeListView lvDiaryItem;
+    private EditText etCreateAddress;
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    diaryEditSwipeAdapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_diary_edit);
-        ButterKnife.inject(this);
         Intent intent = this.getIntent();
         diary = (Diary) intent.getSerializableExtra("diary");
         initView();
     }
 
     private void initView() {
-        tvCreateTime.setText(DateUtils.getStringOfDate(diary.getCreateTime()));
+        LayoutInflater inflater = getLayoutInflater();
+        View headView = inflater.inflate(R.layout.layout_diary_edit_header, null);
+
+        ((TextView) headView.findViewById(R.id.tv_create_time)).setText(DateUtils.getStringOfDate(diary.getCreateTime()));
+        etCreateAddress = ((EditText) headView.findViewById(R.id.et_create_address));
         etCreateAddress.setText(diary.getAddress());
+        Spinner spWeather = (Spinner) headView.findViewById(R.id.sp_weather);
         ArrayAdapter weatherAdapter = ArrayAdapter.createFromResource(this, R.array.weather, android.R.layout.simple_spinner_item);
         spWeather.setAdapter(weatherAdapter);
-        weatherAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spWeather.setSelection(diary.getWeatherType(), true);
         spWeather.setOnItemSelectedListener(new SpinnerSelectedListener());
+        lvDiaryItem = (SwipeListView) findViewById(R.id.lv_diary_item);
+        lvDiaryItem.addHeaderView(headView);
+
+        diaryEditSwipeAdapter = new DiaryEditSwipeAdapter(this, diary.getDiaryItemArrayList(), lvDiaryItem.getRightViewWidth());
+        lvDiaryItem.setAdapter(diaryEditSwipeAdapter);
+        diaryEditSwipeAdapter.setOnRightItemClickListener(new DiaryEditSwipeAdapter.onRightItemClickListener() {
+            @Override
+            public void onRightItemClick(View v, final int position) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int diaryId = diary.getDiaryItemArrayList().get(position).getId();
+                        DataSupport.delete(DiaryItem.class, diaryId);
+                        diary.getDiaryItemArrayList().remove(position);//删除内存数据
+                        mHandler.sendEmptyMessage(1);
+                    }
+                }).start();
+            }
+        });
+
         ActionBar actionBar = getActionBar();
         actionBar.show();
     }
@@ -59,6 +90,7 @@ public class EditDiaryActivity extends BaseActivity {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
             selectedSpinner = arg2;
         }
+
         public void onNothingSelected(AdapterView<?> arg0) {
         }
     }
@@ -84,8 +116,8 @@ public class EditDiaryActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_save:
                 ContentValues values = new ContentValues();
-                values.put("weatherType",selectedSpinner);
-                values.put("address",etCreateAddress.getText().toString());
+                values.put("weatherType", selectedSpinner);
+                values.put("address", etCreateAddress.getText().toString());
                 DataSupport.update(Diary.class, values, diary.getId());
                 diary.setWeatherType(selectedSpinner);
                 diary.setAddress(etCreateAddress.getText().toString());
@@ -98,4 +130,5 @@ public class EditDiaryActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

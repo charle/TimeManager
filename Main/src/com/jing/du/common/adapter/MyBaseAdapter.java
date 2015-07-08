@@ -1,4 +1,4 @@
-package com.jing.du.common.view;
+package com.jing.du.common.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
+import com.jing.du.common.view.MyBaseHolder;
 import org.litepal.crud.DataSupport;
 
 import java.util.HashMap;

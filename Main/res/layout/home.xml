@@ -9,7 +9,9 @@
             android:id="@+id/ll_main_listView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:divider="@null"/>
+            android:listSelector="@drawable/list_selector"
+            android:cacheColorHint="#00000000"
+            android:divider="@drawable/divider"/>
 
     <ProgressBar
             android:visibility="gone"

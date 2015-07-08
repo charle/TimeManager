@@ -12,7 +12,7 @@ import com.jing.du.Main.ViewHolder.CategoyViewHolder;
 import com.jing.du.Main.ViewHolder.TagViewHolder;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.view.InputDialog;
-import com.jing.du.common.view.MyBaseAdapter;
+import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
 import com.jing.du.common.view.MyInnerListView;
 import org.litepal.crud.DataSupport;

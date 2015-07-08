@@ -1,4 +1,4 @@
-package com.jing.du.common.view;
+package com.jing.du.common.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -53,20 +53,25 @@
                     android:layout_span="3"/>
         </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:text="@string/diary_note"
-                    android:padding="@dimen/padding_micro"
-                    android:layout_span="1"/>
-            <TextView
-                    android:id="@+id/tv_note"
-                    android:textColor="@color/bbutton_danger"
-                    android:layout_column="1"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:padding="@dimen/padding_micro"
-                    android:layout_span="3"/>
-        </TableRow>
+        <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:shrinkColumns="1">
+            <TableRow>
+                <TextView
+                        android:text="@string/diary_note"
+                        android:padding="@dimen/padding_micro"
+                        android:layout_span="1"/>
+                <TextView
+                        android:id="@+id/tv_note"
+                        android:textColor="@color/bbutton_danger"
+                        android:layout_column="1"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:padding="@dimen/padding_micro"/>
+            </TableRow>
+        </TableLayout>
+
 
     </TableLayout>
 

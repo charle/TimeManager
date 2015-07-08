@@ -17,18 +17,18 @@
 
             <TextView
                     android:id="@+id/category_name"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:text="@string/category"
-                    android:padding="@dimen/padding_micro"
                     android:textSize="@dimen/textsize_medium"/>
 
             <TextView
-                    android:padding="@dimen/padding_micro"
                     android:textSize="@dimen/textsize_medium"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:text="@string/tag"/>
 
             <TextView
                     android:id="@+id/tag_name"
-                    android:padding="@dimen/padding_micro"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"/>
         </TableRow>
 
@@ -39,37 +39,39 @@
                     android:layout_span="1"/>
             <TextView
                     android:id="@+id/tv_begin_time"
-                    android:padding="@dimen/padding_micro"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"
-                    android:layout_span="3"/>
-        </TableRow>
-
-        <TableRow>
+                    android:layout_span="1"/>
             <TextView
                     android:text="@string/end_time"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"
                     android:layout_span="1"/>
             <TextView
                     android:id="@+id/tv_end_time"
-                    android:padding="@dimen/padding_micro"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"
-                    android:layout_span="3"/>
+                    android:layout_span="1"/>
         </TableRow>
+    </TableLayout>
 
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding_small"
+            android:layout_marginLeft="@dimen/padding_small"
+            android:shrinkColumns="1">
         <TableRow>
             <TextView
                     android:text="@string/diary_note"
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_span="1"/>
+                    android:textSize="@dimen/textsize_medium"/>
             <TextView
                     android:id="@+id/tv_note"
+                    android:layout_marginLeft="@dimen/padding_small"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:padding="@dimen/padding_micro"
                     android:layout_marginRight="@dimen/padding_small"
                     android:textSize="@dimen/textsize_medium"/>
         </TableRow>
-
     </TableLayout>
-
 </LinearLayout>

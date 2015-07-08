@@ -2,43 +2,24 @@ package com.jing.du.Main.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.beardedhen.androidbootstrap.BootstrapEditText;
-import com.jing.du.Main.Adapter.DiaryAdapter;
-import com.jing.du.Main.BackgroundTask.MyAsyncTask;
 import com.jing.du.Main.FragmentView.HomeFragment;
 import com.jing.du.Main.FragmentView.SettingFragment;
 import com.jing.du.Main.FragmentView.TagFragment;
-import com.jing.du.Main.Model.Category;
-import com.jing.du.Main.Model.Diary;
-import com.jing.du.Main.Model.DiaryItem;
-import com.jing.du.Main.Model.Tag;
 import com.jing.du.Main.R;
-import com.jing.du.Main.ViewHolder.DiaryViewHolder;
+import com.jing.du.common.adapter.MyFragmentPagerAdapter;
 import com.jing.du.common.utils.Log;
-import com.jing.du.common.utils.StringUtils;
-import com.jing.du.common.utils.Toast;
 import com.jing.du.common.view.*;
-import org.litepal.crud.DataSupport;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity implements

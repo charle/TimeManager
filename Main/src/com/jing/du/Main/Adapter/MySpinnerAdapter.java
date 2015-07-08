@@ -10,7 +10,7 @@ import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.SpinnerViewHolder;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.StringUtils;
-import com.jing.du.common.view.MyBaseAdapter;
+import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
 import org.litepal.crud.DataSupport;
 
