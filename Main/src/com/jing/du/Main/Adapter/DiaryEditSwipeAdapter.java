@@ -41,16 +41,19 @@ public class DiaryEditSwipeAdapter extends SwipeListBaseAdapter {
             addDiaryItemViewHolder.views[2] = (TextView) converView.findViewById(R.id.tv_begin_time);
             addDiaryItemViewHolder.views[3] = (TextView) converView.findViewById(R.id.tv_end_time);
             addDiaryItemViewHolder.views[4] = (TextView) converView.findViewById(R.id.tv_note);
-            addDiaryItemViewHolder.views[5] = (LinearLayout) converView.findViewById(R.id.ll_left_part);
-            addDiaryItemViewHolder.views[6] = (LinearLayout) converView.findViewById(R.id.ll_right_part);
+            addDiaryItemViewHolder.views[5] = (LinearLayout) converView.findViewById(R.id.ll_main_part);
+            addDiaryItemViewHolder.views[6] = (LinearLayout) converView.findViewById(R.id.ll_left_part);
+            addDiaryItemViewHolder.views[7] = (LinearLayout) converView.findViewById(R.id.ll_right_part);
             converView.setTag(addDiaryItemViewHolder);
         }
 
         LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         addDiaryItemViewHolder.views[5].setLayoutParams(lp1);
-        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(rightWith, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(rightWith/2, LinearLayout.LayoutParams.MATCH_PARENT);
         addDiaryItemViewHolder.views[6].setLayoutParams(lp2);
+        LinearLayout.LayoutParams lp3 = new LinearLayout.LayoutParams(rightWith/2, LinearLayout.LayoutParams.MATCH_PARENT);
+        addDiaryItemViewHolder.views[7].setLayoutParams(lp3);
         return converView;
     }
 
@@ -72,8 +75,17 @@ public class DiaryEditSwipeAdapter extends SwipeListBaseAdapter {
         addDiaryItemViewHolder.views[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onRightItemClick(v, position);
+                if (leftItemClickListener != null) {
+                    leftItemClickListener.onLeftItemClick(v, position);
+                }
+            }
+        });
+
+        addDiaryItemViewHolder.views[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rightItemClickListener != null) {
+                    rightItemClickListener.onRightItemClick(v, position);
                 }
             }
         });
@@ -82,5 +94,10 @@ public class DiaryEditSwipeAdapter extends SwipeListBaseAdapter {
     @Override
     public void setOnRightItemClickListener(onRightItemClickListener listener) {
         super.setOnRightItemClickListener(listener);
+    }
+
+    @Override
+    public void setOnLeftItemClickListener(onLeftItemClickListener listener) {
+        super.setOnLeftItemClickListener(listener);
     }
 }

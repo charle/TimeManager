@@ -49,6 +49,7 @@
     <string name="menu_edit">编辑日记</string>
     <string name="menu_new">新建日记条目</string>
     <string name="menu_save">保存日记</string>
+    <string name="menu_item_save">保存日记条目</string>
     <string name="delete">删除</string>
     <string name="edit">编辑</string>
 </resources>

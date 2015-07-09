@@ -52,21 +52,31 @@ public class SwipeListBaseAdapter extends BaseAdapter {
 
     }
 
-    protected void initEvent(int position){
+    protected void initEvent(int position) {
 
     }
 
     /**
      * 单击事件监听器
      */
-    protected onRightItemClickListener mListener = null;
 
-    public void setOnRightItemClickListener(onRightItemClickListener listener){
-    	mListener = listener;
+    protected onRightItemClickListener rightItemClickListener = null;
+    protected onLeftItemClickListener leftItemClickListener = null;
+
+    public void setOnRightItemClickListener(onRightItemClickListener listener) {
+        rightItemClickListener = listener;
+    }
+
+    public void setOnLeftItemClickListener(onLeftItemClickListener listener){
+        leftItemClickListener = listener;
     }
 
     public interface onRightItemClickListener {
         void onRightItemClick(View v, int position);
+    }
+
+    public interface onLeftItemClickListener {
+        void onLeftItemClick(View v, int position);
     }
 }
 

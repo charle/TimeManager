@@ -153,6 +153,8 @@ public class HomeFragment extends Fragment implements CommonInit {
         }).start();
     }
 
+
+    //用于返回刷新
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

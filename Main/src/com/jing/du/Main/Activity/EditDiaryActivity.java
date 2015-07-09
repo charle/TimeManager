@@ -66,6 +66,18 @@ public class EditDiaryActivity extends BaseActivity {
 
         diaryEditSwipeAdapter = new DiaryEditSwipeAdapter(this, diary.getDiaryItemArrayList(), lvDiaryItem.getRightViewWidth());
         lvDiaryItem.setAdapter(diaryEditSwipeAdapter);
+        diaryEditSwipeAdapter.setOnLeftItemClickListener(new DiaryEditSwipeAdapter.onLeftItemClickListener() {
+            @Override
+            public void onLeftItemClick(View v, final int position) {
+                Intent intent = new Intent();
+                intent.putExtra("diary_item", diary.getDiaryItemArrayList().get(position));
+                intent.setClass(EditDiaryActivity.this, EditDiaryItemActivity.class);
+                startActivityForResult(intent, CommonConstant.GOTO_EDIT_DIARY_ITEM);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+
+        });
+
         diaryEditSwipeAdapter.setOnRightItemClickListener(new DiaryEditSwipeAdapter.onRightItemClickListener() {
             @Override
             public void onRightItemClick(View v, final int position) {
@@ -79,7 +91,9 @@ public class EditDiaryActivity extends BaseActivity {
                     }
                 }).start();
             }
+
         });
+
 
         ActionBar actionBar = getActionBar();
         actionBar.show();
@@ -125,10 +139,34 @@ public class EditDiaryActivity extends BaseActivity {
                 EditDiaryActivity.this.setResult(CommonConstant.GOTO_DIARY_DETAIL, intent);
                 EditDiaryActivity.this.finish();
                 break;
+            case R.id.action_add:
+                Intent intent1 = new Intent();
+                intent1.putExtra("diary", diary);
+                intent1.setClass(EditDiaryActivity.this, CreateDiaryActivity.class);
+                startActivityForResult(intent1, CommonConstant.GOTO_CREATE_DIARY);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CommonConstant.GOTO_CREATE_DIARY:
+                if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
+                    Diary tempDiary = (Diary) data.getSerializableExtra("diary");
+                    diary.getDiaryItemArrayList().clear();
+                    diary.getDiaryItemArrayList().addAll(tempDiary.getDiaryItemArrayList());
+                    tempDiary = null;
+                    diaryEditSwipeAdapter.notifyDataSetChanged();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
 }

@@ -5,8 +5,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <LinearLayout
-            android:id="@+id/ll_left_part"
-            android:layout_width="fill_parent"
+            android:id="@+id/ll_main_part"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <LinearLayout
@@ -99,16 +99,34 @@
             </TextView>
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ll_left_part"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@android:color/darker_gray">
+        <TextView
+                android:id="@+id/item_right_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textColor="@color/blur_bg"/>
+    </LinearLayout>
+
     <LinearLayout
             android:id="@+id/ll_right_part"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center"
-            android:background="@color/right_bg">
-
+            android:background="@android:color/holo_red_light">
         <TextView
-                android:id="@+id/item_right_txt"
+                android:id="@+id/item_right_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

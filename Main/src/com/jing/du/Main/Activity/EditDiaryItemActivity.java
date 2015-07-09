@@ -11,43 +11,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
-import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.FontAwesomeText;
-import com.jing.du.Main.Adapter.AddDiaryItemAdapter;
 import com.jing.du.Main.Adapter.MySpinnerAdapter;
 import com.jing.du.Main.Model.Category;
-import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.Model.Tag;
 import com.jing.du.Main.R;
-import com.jing.du.Main.ViewHolder.AddDiaryItemViewHolder;
 import com.jing.du.Main.ViewHolder.SpinnerViewHolder;
 import com.jing.du.common.constant.CommonConstant;
-import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
-import com.jing.du.common.utils.Toast;
-import com.jing.du.common.view.MyInnerListView;
 import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by charle-chen on 15/6/29.
+ * Created by charle-chen on 15/7/9.
  */
-public class CreateDiaryActivity extends BaseActivity {
+public class EditDiaryItemActivity extends BaseActivity {
 
-    @InjectView(R.id.lv_diary_item)
-    MyInnerListView lvDiaryItem;
     @InjectView(R.id.sp_one)
     Spinner spOne;
     @InjectView(R.id.sp_two)
@@ -62,20 +51,12 @@ public class CreateDiaryActivity extends BaseActivity {
     FontAwesomeText tvEndTime;
     @InjectView(R.id.et_notice)
     EditText etNotice;
-    @InjectView(R.id.bt_create_diary)
-    BootstrapButton btCreateDiary;
-    @InjectView(R.id.lv_add_diary_item)
-    LinearLayout lvAddDiaryItem;
 
-    private List<Category> categoryList = new ArrayList<Category>();
+    private DiaryItem diaryItem;
     private int oneSpinnerId;
     private int twoSpinnerId;
-    private int onePosition;
-    private MySpinnerAdapter spinnerAdapter;
-    private Diary diary;
-    private AddDiaryItemAdapter addDiaryItemAdapter;
-    private List<DiaryItem> diaryItems = new ArrayList<DiaryItem>();
-    private boolean diaryItemAddedFlag = false;
+    private int onePosition = 0;
+    private List<Category> categoryList = new ArrayList<Category>();
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -83,23 +64,18 @@ public class CreateDiaryActivity extends BaseActivity {
                     SpinnerViewHolder spinnerViewHolder = new SpinnerViewHolder();
                     SpinnerViewHolder spinnerViewHolder1 = new SpinnerViewHolder();
                     if (!StringUtils.isListEmpty(categoryList)) {
-                        MySpinnerAdapter spinnerAdapter = new MySpinnerAdapter(CreateDiaryActivity.this, categoryList, spinnerViewHolder, R.layout.spinner_item, CommonConstant.SPINNER_ONE_ID) {
+                        MySpinnerAdapter spinnerAdapter = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList, spinnerViewHolder, R.layout.spinner_item, CommonConstant.SPINNER_ONE_ID) {
                         };
                         spOne.setAdapter(spinnerAdapter);
-                        onePosition = 0;
+                        spOne.setSelection(0);
                         oneSpinnerId = ((Category) spinnerAdapter.getItem(0)).getId();
                     }
                     if (!StringUtils.isListEmpty(categoryList)) {
-                        MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(CreateDiaryActivity.this, categoryList.get(0).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
+                        MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList.get(0).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
                         };
                         spTwo.setAdapter(spinnerAdapter1);
                         twoSpinnerId = ((Tag) spinnerAdapter1.getItem(0)).getId();
                     }
-                    break;
-                case 2:
-                    lvAddDiaryItem.setVisibility(View.INVISIBLE);
-                    Toast.show(CreateDiaryActivity.this, "成功", 1000);
-                    addDiaryItemAdapter.notifyDataSetChanged();
                     break;
             }
         }
@@ -108,23 +84,22 @@ public class CreateDiaryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lay_create_diary);
+        setContentView(R.layout.layout_edit_diary_item);
         ButterKnife.inject(this);
         Intent intent = this.getIntent();
-        diary = (Diary) intent.getSerializableExtra("diary");
-        if (!StringUtils.isObjectEmpty(diary)) {
-            diaryItems = diary.getDiaryItemArrayList();
-            diaryItemAddedFlag = true;
-        } else {
-            diary = new Diary();
+        diaryItem = (DiaryItem) intent.getSerializableExtra("diary_item");
+        if (!StringUtils.isObjectEmpty(diaryItem)) {
+
         }
-        Log.d(diary.getId() + ">>>>>>>>>>>>>>>>>>>>>>");
         afterInitView();
     }
 
     private void afterInitView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        etBeginTime.setText(diaryItem.getBeginTime());
+        etEndTime.setText(diaryItem.getEndTime());
+        etNotice.setText(diaryItem.getNote());
         initData();
     }
 
@@ -138,17 +113,9 @@ public class CreateDiaryActivity extends BaseActivity {
                 mHandler.sendEmptyMessage(1);
             }
         }).start();
-        AddDiaryItemViewHolder addDiaryItemViewHolder = new AddDiaryItemViewHolder();
-        addDiaryItemAdapter = new AddDiaryItemAdapter(this, diaryItems, addDiaryItemViewHolder, R.layout.add_diary_item);
-        lvDiaryItem.setAdapter(addDiaryItemAdapter);
     }
 
-    @Override
-    public void initEvent() {
-        super.initEvent();
-    }
-
-    @OnClick({R.id.tv_begin_time, R.id.tv_end_time, R.id.bt_create_diary})
+    @OnClick({R.id.tv_begin_time, R.id.tv_end_time})
     public void clickEvent(View v) {
         switch (v.getId()) {
             case R.id.tv_begin_time:
@@ -184,29 +151,6 @@ public class CreateDiaryActivity extends BaseActivity {
                         false);
                 dialog1.show();
                 break;
-            case R.id.bt_create_diary:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!diaryItemAddedFlag) {
-                            diary.setCreateTime(new Date());
-                            diary.save();
-                            diaryItemAddedFlag = true;
-                        }
-                        Category category = DataSupport.find(Category.class, oneSpinnerId);
-                        DiaryItem diaryItem = new DiaryItem();
-                        diaryItem.setBeginTime(etBeginTime.getText().toString());
-                        diaryItem.setEndTime(etEndTime.getText().toString());
-                        diaryItem.setTag(DataSupport.find(Tag.class, twoSpinnerId));
-                        diaryItem.setCategory(category);
-                        diaryItem.setNote(etNotice.getText().toString());
-                        diaryItem.setDiary(DataSupport.find(Diary.class, diary.getId()));
-                        diaryItem.save();
-                        diaryItems.add(diaryItem);
-                        mHandler.sendEmptyMessage(2);
-                    }
-                }).start();
-                break;
         }
     }
 
@@ -217,7 +161,7 @@ public class CreateDiaryActivity extends BaseActivity {
             onePosition = position;
             if (!StringUtils.isListEmpty(categoryList.get(position).getTagList())) {
                 SpinnerViewHolder spinnerViewHolder1 = new SpinnerViewHolder();
-                MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(CreateDiaryActivity.this, categoryList.get(position).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
+                MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList.get(position).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
                 };
                 twoSpinnerId = categoryList.get(position).getTagList().get(0).getId();
                 spTwo.setAdapter(spinnerAdapter1);
@@ -235,52 +179,16 @@ public class CreateDiaryActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.new_diary, menu);
+        getMenuInflater().inflate(R.menu.edit_diary_item, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_add:
-                lvAddDiaryItem.setVisibility(View.VISIBLE);
-                break;
-            case R.id.action_save:
-                if (!diaryItemAddedFlag) {
-                    finish();
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                } else {
-                    Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary", diary);
-                    CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
-                    CreateDiaryActivity.this.finish();
-                }
-                break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case CommonConstant.GOTO_DIARY_DETAIL:
-                if (resultCode == CommonConstant.GOTO_HOME_FLAGMENT) {
-
-                }
-            default:
-                break;
-        }
     }
 }

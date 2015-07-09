@@ -162,7 +162,9 @@ public class DiaryDetailActivity extends BaseActivity {
             case CommonConstant.GOTO_EDIT_DIARY:
                 if (resultCode == CommonConstant.GOTO_DIARY_DETAIL) {
                     Diary tempDairy = (Diary) data.getSerializableExtra("diary");
-                    diary = tempDairy;
+                    diary.getDiaryItemArrayList().clear();
+                    diary.getDiaryItemArrayList().addAll(tempDairy.getDiaryItemArrayList());
+                    tempDairy = null;
                     refeshView();
                     diaryChanged = true;
                 }

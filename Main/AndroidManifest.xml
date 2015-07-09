@@ -36,6 +36,11 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
+        <activity
+                android:name=".Activity.EditDiaryItemActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.DeviceDefault.Light">
+        </activity>
         <!--<activity android:name="com.evernote.client.android.EvernoteOAuthActivity"/>-->
         <!--<activity android:name="com.evernote.client.android.login.EvernoteLoginActivity"/>-->
     </application>

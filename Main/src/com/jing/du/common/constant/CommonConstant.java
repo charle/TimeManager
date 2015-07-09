@@ -26,4 +26,5 @@ public class CommonConstant {
     public static final int GOTO_CREATE_DIARY = 3;
     public static final int GOTO_EDIT_DIARY = 4;
     public static final int GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY = 5;
+    public static final int GOTO_EDIT_DIARY_ITEM = 6;
 }

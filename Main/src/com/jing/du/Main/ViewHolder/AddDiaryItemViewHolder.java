@@ -10,9 +10,9 @@ import com.jing.du.common.view.MyBaseHolder;
  */
 public class AddDiaryItemViewHolder extends MyBaseHolder {
     private TextView textView,textView1,textView2,textView3,textView4;
-    private LinearLayout linearLayout1,linearLayout2;
+    private LinearLayout linearLayout1,linearLayout2,linearLayout3;
     public AddDiaryItemViewHolder() {
-        views = new View[7];
+        views = new View[8];
         views[0] = textView;
         views[1] = textView1;
         views[2] = textView2;
@@ -20,5 +20,6 @@ public class AddDiaryItemViewHolder extends MyBaseHolder {
         views[4] = textView4;
         views[5] = linearLayout1;
         views[6] = linearLayout2;
+        views[7] = linearLayout3;
     }
 }
