@@ -51,6 +51,7 @@ public class MyBaseAdapter extends BaseAdapter {
     public int getCount() {
         if (StringUtils.isListEmpty(mData))
             return 0;
+        Log.d("list apdater getcount function>>>"+mData.size());
         return mData.size();
     }
 

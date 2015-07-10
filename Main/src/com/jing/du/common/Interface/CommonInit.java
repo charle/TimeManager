@@ -6,4 +6,9 @@ package com.jing.du.common.Interface;
 public interface CommonInit {
 
     public void initData();
+    public void initViews();
+    public void initHandler();
+    public void notifyDataSetChanged();
+    public void refreshView();
+
 }

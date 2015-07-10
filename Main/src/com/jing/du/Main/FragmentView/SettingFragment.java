@@ -109,4 +109,23 @@ public class SettingFragment extends Fragment implements CommonInit {
         }
     }
 
+    @Override
+    public void initViews() {
+
+    }
+
+    @Override
+    public void initHandler() {
+
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+
+    }
+
+    @Override
+    public void refreshView() {
+
+    }
 }

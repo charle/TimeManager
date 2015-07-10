@@ -11,6 +11,7 @@ import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateUtils;
+import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.adapter.MyBaseAdapter;
 import com.jing.du.common.view.MyBaseHolder;
@@ -61,6 +62,7 @@ public class DiaryAdapter extends MyBaseAdapter {
             ((TextView) myBaseHolder.views[3]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(1)));
             ((TextView) myBaseHolder.views[4]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(2)));
         }
+        Log.d("diaryadapter get view function>>>>");
         return convertView;
     }
 

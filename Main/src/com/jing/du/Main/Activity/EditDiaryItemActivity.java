@@ -55,6 +55,8 @@ public class EditDiaryItemActivity extends BaseActivity {
     private DiaryItem diaryItem;
     private int oneSpinnerId;
     private int twoSpinnerId;
+    private int firstSelected = 0;
+    private int secondSelected = 0;
     private int onePosition = 0;
     private List<Category> categoryList = new ArrayList<Category>();
     private Handler mHandler = new Handler() {
@@ -67,14 +69,15 @@ public class EditDiaryItemActivity extends BaseActivity {
                         MySpinnerAdapter spinnerAdapter = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList, spinnerViewHolder, R.layout.spinner_item, CommonConstant.SPINNER_ONE_ID) {
                         };
                         spOne.setAdapter(spinnerAdapter);
-                        spOne.setSelection(0);
-                        oneSpinnerId = ((Category) spinnerAdapter.getItem(0)).getId();
+                        spOne.setSelection(firstSelected);
+                        oneSpinnerId = ((Category) spinnerAdapter.getItem(firstSelected)).getId();
                     }
                     if (!StringUtils.isListEmpty(categoryList)) {
-                        MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList.get(0).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
+                        MySpinnerAdapter spinnerAdapter1 = new MySpinnerAdapter(EditDiaryItemActivity.this, categoryList.get(firstSelected).getTagList(), spinnerViewHolder1, R.layout.spinner_item, CommonConstant.SPINNER_TWO_ID) {
                         };
                         spTwo.setAdapter(spinnerAdapter1);
-                        twoSpinnerId = ((Tag) spinnerAdapter1.getItem(0)).getId();
+                        spTwo.setSelection(secondSelected);
+                        twoSpinnerId = ((Tag) spinnerAdapter1.getItem(secondSelected)).getId();
                     }
                     break;
             }
@@ -89,7 +92,7 @@ public class EditDiaryItemActivity extends BaseActivity {
         Intent intent = this.getIntent();
         diaryItem = (DiaryItem) intent.getSerializableExtra("diary_item");
         if (!StringUtils.isObjectEmpty(diaryItem)) {
-
+            diaryItem = DataSupport.find(DiaryItem.class, diaryItem.getId(), true);
         }
         afterInitView();
     }
@@ -109,7 +112,18 @@ public class EditDiaryItemActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                categoryList = DataSupport.findAll(Category.class, true);
+                categoryList = DataSupport.findAll(Category.class,true);
+                for (int i = 0; i < categoryList.size(); i++) {
+                    if (categoryList.get(i).getName().trim().equals(diaryItem.getCategory().getName())){
+                        firstSelected=i;
+                        break;
+                    }
+                }
+                for(int j=0;j< categoryList.get(firstSelected).getTagList().size();j++){
+                    if(categoryList.get(firstSelected).getTagList().get(j).getName().equals(diaryItem.getTag().getName())){
+                        secondSelected=j;
+                    }
+                }
                 mHandler.sendEmptyMessage(1);
             }
         }).start();
@@ -186,6 +200,17 @@ public class EditDiaryItemActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_save:
+                diaryItem.setBeginTime(etBeginTime.getText().toString());
+                diaryItem.setEndTime(etEndTime.getText().toString());
+                diaryItem.setNote(etNotice.getText().toString());
+                diaryItem.setCategory(DataSupport.find(Category.class, oneSpinnerId));
+                diaryItem.setTag(DataSupport.find(Tag.class, twoSpinnerId));
+                diaryItem.update(diaryItem.getId());
+                Intent intent = EditDiaryItemActivity.this.getIntent().putExtra("diary_item", diaryItem);
+                EditDiaryItemActivity.this.setResult(CommonConstant.GOTO_EDIT_DIARY, intent);
+                EditDiaryItemActivity.this.finish();
+                break;
             default:
                 break;
         }

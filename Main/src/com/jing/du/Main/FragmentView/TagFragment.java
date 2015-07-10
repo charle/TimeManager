@@ -2,11 +2,11 @@ package com.jing.du.Main.FragmentView;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
@@ -27,57 +27,15 @@ import java.util.List;
 public class TagFragment extends Fragment implements CommonInit {
 
     private List<Category> categoryList;
-    private LinearLayout progressBar;
     private CategoyAdapter categoyAdapter;
-    private Handler mHandler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case 1:
-                    if (!StringUtils.isViewEmpty(progressBar)) {
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-                    break;
-                case 2:
-                    categoyAdapter.notifyDataSetChanged();
-                    break;
-
-            }
-        }
-    };
+    private View mainView;
+    private ListView listView;
+    private Handler mHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mainView = inflater.inflate(R.layout.tag, container, false);
-//        progressBar = (LinearLayout)mainView.findViewById(R.id.lv_progress_bar);
-        final BootstrapEditText editText = (BootstrapEditText) mainView.findViewById(R.id.et_category);
-        BootstrapButton button = (BootstrapButton) mainView.findViewById(R.id.bt_add_category);
-        final ListView listView = (ListView) mainView.findViewById(R.id.lv_category);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String categoryString = editText.getText().toString();
-
-                if (StringUtils.isEmpty(categoryString)) {
-                    Toast.show(getActivity(), getActivity().getString(R.string.empty_warning), 1000);
-                } else {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Category category = new Category();
-                            category.setName(categoryString);
-                            category.save();//异步过程来处理
-                            categoryList.add(category);
-                            mHandler.sendEmptyMessage(2);
-                        }
-                    }).start();
-                }
-                editText.setText("");
-            }
-        });
-        CategoyViewHolder viewHolder = new CategoyViewHolder();
-        categoyAdapter = new CategoyAdapter(getActivity(), categoryList, viewHolder, R.layout.category_item);
-        listView.setAdapter(categoyAdapter);
+        mainView = inflater.inflate(R.layout.tag, container, false);
+        initViews();
         return mainView;
     }
 
@@ -85,6 +43,7 @@ public class TagFragment extends Fragment implements CommonInit {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initData();
+        initHandler();
     }
 
     @Override
@@ -108,5 +67,64 @@ public class TagFragment extends Fragment implements CommonInit {
                 mHandler.sendEmptyMessage(1);
             }
         }).start();
+    }
+
+    @Override
+    public void initViews() {
+        final BootstrapEditText editText = (BootstrapEditText) mainView.findViewById(R.id.et_category);
+        BootstrapButton button = (BootstrapButton) mainView.findViewById(R.id.bt_add_category);
+        listView = (ListView) mainView.findViewById(R.id.lv_category);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String categoryString = editText.getText().toString();
+
+                if (StringUtils.isEmpty(categoryString)) {
+                    Toast.show(getActivity(), getActivity().getString(R.string.empty_warning), 1000);
+                } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Category category = new Category();
+                            category.setName(categoryString);
+                            category.save();//异步过程来处理
+                            categoryList.add(category);
+                            mHandler.sendEmptyMessage(2);
+                        }
+                    }).start();
+                }
+                editText.setText("");
+            }
+        });
+        mHandler.sendEmptyMessage(1);
+    }
+
+    @Override
+    public void initHandler() {
+        mHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what) {
+                    case 1:
+                        notifyDataSetChanged();
+                        break;
+                }
+            }
+        };
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        if (categoyAdapter == null) {
+            CategoyViewHolder viewHolder = new CategoyViewHolder();
+            categoyAdapter = new CategoyAdapter(getActivity(), categoryList, viewHolder, R.layout.category_item);
+        }
+        listView.setAdapter(categoyAdapter);
+    }
+
+    @Override
+    public void refreshView() {
+
     }
 }

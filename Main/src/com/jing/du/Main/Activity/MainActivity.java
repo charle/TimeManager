@@ -16,7 +16,8 @@ import com.jing.du.Main.FragmentView.TagFragment;
 import com.jing.du.Main.R;
 import com.jing.du.common.adapter.MyFragmentPagerAdapter;
 import com.jing.du.common.utils.Log;
-import com.jing.du.common.view.*;
+import com.jing.du.common.view.ChangeColorIconWithText;
+import com.jing.du.common.view.MyFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MainActivity extends FragmentActivity implements
     private TagFragment tagFragment;
     private SettingFragment settingFragment;
 
-    private MyFragment  fragmentTwo;
+    private MyFragment fragmentTwo;
     private MyFragmentPagerAdapter mAdapter;
     private List<ChangeColorIconWithText> mTabIndicators = new ArrayList<ChangeColorIconWithText>();
 
@@ -55,7 +56,6 @@ public class MainActivity extends FragmentActivity implements
         afterInitView();
         Log.d("activity is created");
     }
-
 
 
     private void afterInitView() {

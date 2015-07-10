@@ -15,15 +15,11 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.jing.du.Main.Adapter.AddDiaryItemAdapter;
 import com.jing.du.Main.Model.Diary;
-import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.AddDiaryItemViewHolder;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateUtils;
 import org.litepal.crud.DataSupport;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by charle-chen on 15/7/3.
@@ -160,7 +156,8 @@ public class DiaryDetailActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CommonConstant.GOTO_EDIT_DIARY:
-                if (resultCode == CommonConstant.GOTO_DIARY_DETAIL) {
+                if (resultCode == CommonConstant.GOTO_DIARY_DETAIL ||
+                        requestCode == CommonConstant.GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY) {
                     Diary tempDairy = (Diary) data.getSerializableExtra("diary");
                     diary.getDiaryItemArrayList().clear();
                     diary.getDiaryItemArrayList().addAll(tempDairy.getDiaryItemArrayList());
