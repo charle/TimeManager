@@ -43,4 +43,4 @@
     + 进入密码管理
     + 导出日记
     
-![](images/setting.pgn)
+![](images/setting.png)
