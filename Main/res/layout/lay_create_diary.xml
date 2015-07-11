@@ -38,6 +38,38 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/padding_micro"
+                    android:layout_marginLeft="@dimen/padding_micro"
+                    android:orientation="horizontal">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:text="@string/choose_weather"/>
+                <Spinner
+                        android:id="@+id/sp_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/padding_micro"
+                        android:text="@string/choose_address"/>
+
+                <EditText
+                        android:id="@+id/et_create_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+
             <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

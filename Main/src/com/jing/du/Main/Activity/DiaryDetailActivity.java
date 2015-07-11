@@ -173,13 +173,17 @@ public class DiaryDetailActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (diaryChanged) {
-            Intent intent = DiaryDetailActivity.this.getIntent().putExtra("diary", diary);
-            DiaryDetailActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY, intent);
-            DiaryDetailActivity.this.finish();
-        } else {
-            finish();
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (diaryChanged) {
+                    Intent intent = DiaryDetailActivity.this.getIntent().putExtra("diary", diary);
+                    DiaryDetailActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY, intent);
+                    DiaryDetailActivity.this.finish();
+                } else {
+                    finish();
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }

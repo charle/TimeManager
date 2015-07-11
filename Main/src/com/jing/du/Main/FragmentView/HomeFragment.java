@@ -1,5 +1,7 @@
 package com.jing.du.Main.FragmentView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +22,7 @@ import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.DiaryViewHolder;
 import com.jing.du.common.Interface.CommonInit;
 import com.jing.du.common.constant.CommonConstant;
+import com.jing.du.common.utils.Log;
 import com.jing.du.common.view.XListView;
 import org.litepal.crud.DataSupport;
 
@@ -32,6 +35,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements CommonInit {
     private DiaryAdapter diaryAdapter;
     private List<Diary> diaryList = new ArrayList<Diary>();
+    private Context context;
     private View mainView;
     private XListView mListView;
     private View addHeaderView;
@@ -54,8 +58,8 @@ public class HomeFragment extends Fragment implements CommonInit {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
         initHandler();
+        initData();
     }
 
     @Override
@@ -67,8 +71,15 @@ public class HomeFragment extends Fragment implements CommonInit {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.d("home fragment on attach");
+        this.context = activity;
+    }
+
+    @Override
     public void initViews() {
-        // TODO Auto-generated method stub
+        Log.d("initviews homefragment beginning");
         mListView = (XListView) mainView.findViewById(R.id.ll_main_listView);
         mListView.addHeaderView(addHeaderView);
         final ProgressBar pb_head = (ProgressBar) mainView.findViewById(R.id.pb_head);
@@ -117,7 +128,7 @@ public class HomeFragment extends Fragment implements CommonInit {
 
         mListView.setXListViewListener(listViewListener);
         mListView.setOnItemClickListener(listItemClick);
-        mHandler.sendEmptyMessage(1);
+        mHandler.sendEmptyMessage(2);
     }
 
     @Override
@@ -128,6 +139,12 @@ public class HomeFragment extends Fragment implements CommonInit {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 1:
+                        DiaryViewHolder diaryViewHolder = new DiaryViewHolder();
+                        diaryAdapter = new DiaryAdapter(context, diaryList, diaryViewHolder, R.layout.home_list_main_item);
+                        mListView.setAdapter(diaryAdapter);
+                        diaryAdapter.notifyDataSetChanged();
+                        break;
+                    case 2:
                         notifyDataSetChanged();
                         break;
                 }
@@ -139,14 +156,16 @@ public class HomeFragment extends Fragment implements CommonInit {
     public void notifyDataSetChanged() {
         if (diaryAdapter == null) {
             DiaryViewHolder diaryViewHolder = new DiaryViewHolder();
-            diaryAdapter = new DiaryAdapter(getActivity(), diaryList, diaryViewHolder, R.layout.home_list_main_item);
+            diaryAdapter = new DiaryAdapter(context, diaryList, diaryViewHolder, R.layout.home_list_main_item);
         }
         mListView.setAdapter(diaryAdapter);
+        diaryAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("homefragment destory view");
     }
 
     @Override
@@ -198,5 +217,11 @@ public class HomeFragment extends Fragment implements CommonInit {
     @Override
     public void refreshView() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("home fragment is on resume");
     }
 }

@@ -15,6 +15,7 @@ import com.jing.du.Main.Model.Category;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.CategoyViewHolder;
 import com.jing.du.common.Interface.CommonInit;
+import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.utils.Toast;
 import org.litepal.crud.DataSupport;
@@ -42,13 +43,14 @@ public class TagFragment extends Fragment implements CommonInit {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
         initHandler();
+        initData();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.d("tagfragment destory view");
     }
 
     @Override
@@ -90,14 +92,14 @@ public class TagFragment extends Fragment implements CommonInit {
                             category.setName(categoryString);
                             category.save();//异步过程来处理
                             categoryList.add(category);
-                            mHandler.sendEmptyMessage(2);
+                            mHandler.sendEmptyMessage(3);
                         }
                     }).start();
                 }
                 editText.setText("");
             }
         });
-        mHandler.sendEmptyMessage(1);
+        mHandler.sendEmptyMessage(2);
     }
 
     @Override
@@ -107,7 +109,15 @@ public class TagFragment extends Fragment implements CommonInit {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case 1:
+                        CategoyViewHolder viewHolder = new CategoyViewHolder();
+                        categoyAdapter = new CategoyAdapter(getActivity(), categoryList, viewHolder, R.layout.category_item);
+                        listView.setAdapter(categoyAdapter);
+                        categoyAdapter.notifyDataSetChanged();
+                    case 2:
                         notifyDataSetChanged();
+                        break;
+                    case 3:
+                        categoyAdapter.notifyDataSetChanged();
                         break;
                 }
             }
@@ -121,6 +131,7 @@ public class TagFragment extends Fragment implements CommonInit {
             categoyAdapter = new CategoyAdapter(getActivity(), categoryList, viewHolder, R.layout.category_item);
         }
         listView.setAdapter(categoyAdapter);
+        categoyAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableRow;
 import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.common.Interface.CommonInit;
+import com.jing.du.common.constant.CommonConstant;
+import com.jing.du.common.file.OutputDb;
 import com.jing.du.common.file.TemplateEngine;
 import com.jing.du.common.utils.DateUtils;
 import com.jing.du.common.utils.Toast;
@@ -50,7 +53,7 @@ public class SettingFragment extends Fragment implements CommonInit {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View mainView = inflater.inflate(R.layout.setting, container, false);
-        Button button = (Button) mainView.findViewById(R.id.bt_output);
+        TableRow button = (TableRow) mainView.findViewById(R.id.tr_output);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,30 +61,27 @@ public class SettingFragment extends Fragment implements CommonInit {
                     @Override
                     public void run() {
                         List<Diary> diaryList = DataSupport.findAll(Diary.class, true);
-                        List<HashMap<String,Object>> list = new ArrayList<HashMap<String, Object>>();
+                        OutputDb db = new OutputDb();
+                        StringBuffer stringBuffer = new StringBuffer();
                         for (Diary diary : diaryList) {
-                            HashMap<String, Object> data = new HashMap<String, Object>();
-                            data.put("diary_time", "### "+DateUtils.getStringOfDate(diary.getCreateTime())
-                            + " 晴 "+"上海市");
-                            StringBuffer buffer = new StringBuffer();
-                            for (DiaryItem item : diary.getDiaryItemArrayList()) {
-                                DiaryItem diaryItem = DataSupport.find(DiaryItem.class, item.getId(), true);
-                                buffer.append("- ");
-                                buffer.append(diaryItem.getCategory().getName());
-                                buffer.append(":");
-                                buffer.append(diaryItem.getTag().getName());
-                                buffer.append(" ");
-                                buffer.append(diaryItem.getBeginTime());
-                                buffer.append("~");
-                                buffer.append(diaryItem.getEndTime());
-                                buffer.append(" ");
-                                buffer.append(diaryItem.getNote());
-                                buffer.append("\n");
+                            HashMap<String, String> data = new HashMap<String, String>();
+                            data.put("createt_time",DateUtils.getStringOfDate(diary.getCreateTime()));
+                            data.put("weather", CommonConstant.WEATHER_STATE[diary.getWeatherType()]);
+                            data.put("address", diary.getAddress());
+                            stringBuffer.append(db.replace("### ${createt_time} ${weather} ${address}",data,true));
+                            for(DiaryItem diaryItem : diary.getDiaryItemArrayList()){
+                                data.clear();
+                                DiaryItem diaryItem1 = DataSupport.find(DiaryItem.class, diaryItem.getId(), true);
+                                data.put("category_name",diaryItem1.getCategory().getName());
+                                data.put("tag_name",diaryItem1.getTag().getName());
+                                data.put("begin_time",diaryItem1.getBeginTime());
+                                data.put("end_time",diaryItem1.getEndTime());
+                                data.put("note", diaryItem1.getNote());
+                                stringBuffer.append(db.replace("- ${category_name} ${tag_name} ${begin_time} ~ ${end_time} ${note}", data,true));
                             }
-                            data.put("diary_items",buffer.toString());
-                            list.add(data);
+                            stringBuffer.append(System.getProperty("line.separator"));
                         }
-                        writeData("diary.tpl", "diary.md", getActivity(), list);
+                        db.writeDocument("diary.md",stringBuffer.toString(),false);
                         mHandler.sendEmptyMessage(1);
 
                     }
@@ -94,19 +94,6 @@ public class SettingFragment extends Fragment implements CommonInit {
     @Override
     public void initData() {
 
-    }
-
-    private void writeData(String confPath, String filePath, Context context, List<HashMap<String, Object>> data) {
-        TemplateEngine templateEngine = new TemplateEngine(confPath, context);
-        // 设置换行符
-//        templateEngine.setEnter(System.getProperty("line.separator"));
-        // 读取模板文件
-//        String template = templateEngine.readTemplate(confPath);
-        // 替换模板变量
-//        String dataString = templateEngine.replaceArgs(template, data);
-        for(HashMap<String,Object> item : data){
-            templateEngine.writeConf(filePath,item.get("diary_time").toString()+"\n"+item.get("diary_items").toString()+"\n",false);
-        }
     }
 
     @Override

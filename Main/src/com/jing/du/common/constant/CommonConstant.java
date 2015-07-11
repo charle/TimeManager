@@ -19,7 +19,13 @@ public class CommonConstant {
     public static final int RESOUCE_OVERCAST = R.drawable.cloudy;
     public static final int RESOUCE_RAINNY = R.drawable.rainy;
 
+    public static final String WEATHER_SUNNY = "睛天";
+    public static final String WEATHER_CLOUDY = "多云";
+    public static final String WEATHER_OVERCAST = "阴天";
+    public static final String WEATHER_RAINNY = "雨天";
+
     public static final int[] WEATHER_RESOUCE = {RESOUCE_SUNNY,RESOUCE_CLOUDY,RESOUCE_OVERCAST,RESOUCE_RAINNY};
+    public static final String[] WEATHER_STATE = {WEATHER_SUNNY,WEATHER_CLOUDY,WEATHER_OVERCAST,WEATHER_RAINNY};
 
     public static final int GOTO_DIARY_DETAIL = 1;
     public static final int GOTO_HOME_FLAGMENT = 2;

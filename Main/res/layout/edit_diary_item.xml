@@ -112,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:drawableLeft="@drawable/edit"
                 android:gravity="center"
                 android:text="@string/edit"
                 android:textColor="@color/blur_bg"/>

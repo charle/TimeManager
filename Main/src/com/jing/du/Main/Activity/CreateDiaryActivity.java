@@ -10,10 +10,7 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TimePicker;
+import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -48,6 +45,10 @@ public class CreateDiaryActivity extends BaseActivity {
 
     @InjectView(R.id.lv_diary_item)
     MyInnerListView lvDiaryItem;
+    @InjectView(R.id.sp_weather)
+    Spinner spWeather;
+    @InjectView(R.id.et_create_address)
+    EditText etCreateAddress;
     @InjectView(R.id.sp_one)
     Spinner spOne;
     @InjectView(R.id.sp_two)
@@ -71,6 +72,7 @@ public class CreateDiaryActivity extends BaseActivity {
     private int oneSpinnerId;
     private int twoSpinnerId;
     private int onePosition;
+    private int weatherSpinnerId;
     private MySpinnerAdapter spinnerAdapter;
     private Diary diary;
     private AddDiaryItemAdapter addDiaryItemAdapter;
@@ -141,6 +143,10 @@ public class CreateDiaryActivity extends BaseActivity {
         AddDiaryItemViewHolder addDiaryItemViewHolder = new AddDiaryItemViewHolder();
         addDiaryItemAdapter = new AddDiaryItemAdapter(this, diaryItems, addDiaryItemViewHolder, R.layout.add_diary_item);
         lvDiaryItem.setAdapter(addDiaryItemAdapter);
+
+        ArrayAdapter weatherAdapter = ArrayAdapter.createFromResource(this, R.array.weather, android.R.layout.simple_spinner_item);
+        spWeather.setAdapter(weatherAdapter);
+        spWeather.setSelection(0, true);
     }
 
     @Override
@@ -190,6 +196,8 @@ public class CreateDiaryActivity extends BaseActivity {
                     public void run() {
                         if (!diaryItemAddedFlag) {
                             diary.setCreateTime(new Date());
+                            diary.setAddress(etCreateAddress.getText().toString());
+                            diary.setWeatherType(weatherSpinnerId);
                             diary.save();
                             diaryItemAddedFlag = true;
                         }
@@ -232,6 +240,12 @@ public class CreateDiaryActivity extends BaseActivity {
             twoSpinnerId = categoryList.get(onePosition).getTagList().get(position).getId();
         }
     }
+
+    @OnItemSelected({R.id.sp_weather})
+    void weatherSpinnerItemSelected(int position){
+        weatherSpinnerId = position;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

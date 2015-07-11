@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:hyman="http://schemas.android.com/apk/res/com.jing.du.Main"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+              xmlns:hyman="http://schemas.android.com/apk/res/com.jing.du.Main"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" >
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/tab_bg"
-        android:orientation="horizontal" >
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/tab_bg"
+            android:orientation="horizontal">
 
         <com.jing.du.common.view.ChangeColorIconWithText
-            android:id="@+id/indicator_home"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            hyman:icon="@drawable/home"
-            hyman:text="@string/home"
-            hyman:text_size="12sp"
-            hyman:color="#ff45c01a" />
+                android:id="@+id/indicator_home"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                hyman:icon="@drawable/home"
+                hyman:text="@string/home"
+                hyman:text_size="12sp"
+                hyman:color="#ff45c01a"/>
 
         <com.jing.du.common.view.ChangeColorIconWithText
-            android:id="@+id/indicator_list"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            hyman:icon="@drawable/search"
-            hyman:text="@string/search"
-            hyman:text_size="12sp"
-            hyman:color="#ff45c01a" />
+                android:id="@+id/indicator_list"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                hyman:icon="@drawable/search"
+                hyman:text="@string/search"
+                hyman:text_size="12sp"
+                hyman:color="#ff45c01a"/>
 
         <com.jing.du.common.view.ChangeColorIconWithText
-            android:id="@+id/indicator_tag"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            hyman:icon="@drawable/main"
-            hyman:text="@string/star"
-            hyman:text_size="12sp"
-            hyman:color="#ff45c01a" />
+                android:id="@+id/indicator_tag"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                hyman:icon="@drawable/main"
+                hyman:text="@string/star"
+                hyman:text_size="12sp"
+                hyman:color="#ff45c01a"/>
 
         <com.jing.du.common.view.ChangeColorIconWithText
-            android:id="@+id/indicator_setting"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:padding="5dp"
-            hyman:icon="@drawable/setting"
-            hyman:text="@string/setting"
-            hyman:text_size="12sp"
-            hyman:color="#ff45c01a" />
+                android:id="@+id/indicator_setting"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:padding="5dp"
+                hyman:icon="@drawable/setting"
+                hyman:text="@string/setting"
+                hyman:text_size="12sp"
+                hyman:color="#ff45c01a"/>
     </LinearLayout>
 
 </LinearLayout>

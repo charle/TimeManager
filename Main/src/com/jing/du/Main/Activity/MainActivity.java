@@ -188,4 +188,10 @@ public class MainActivity extends FragmentActivity implements
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("activity is resume");
+    }
 }

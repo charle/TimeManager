@@ -27,7 +27,7 @@ public class EditDiaryActivity extends BaseActivity {
     private int selectedSpinner;
     private SwipeListView lvDiaryItem;
     private EditText etCreateAddress;
-    private boolean isDataChanged=false;
+    private boolean isDataChanged = false;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -70,7 +70,7 @@ public class EditDiaryActivity extends BaseActivity {
             public void onLeftItemClick(View v, final int position) {
                 Intent intent = new Intent();
                 intent.putExtra("diary_item", diary.getDiaryItemArrayList().get(position));
-                intent.putExtra("position",position);
+                intent.putExtra("position", position);
                 intent.setClass(EditDiaryActivity.this, EditDiaryItemActivity.class);
                 startActivityForResult(intent, CommonConstant.GOTO_EDIT_DIARY_ITEM);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -161,16 +161,16 @@ public class EditDiaryActivity extends BaseActivity {
                     diary.getDiaryItemArrayList().clear();
                     diary.getDiaryItemArrayList().addAll(tempDiary.getDiaryItemArrayList());
                     tempDiary = null;
-                    isDataChanged=true;
+                    isDataChanged = true;
                     diaryEditSwipeAdapter.notifyDataSetChanged();
                 }
                 break;
             case CommonConstant.GOTO_EDIT_DIARY_ITEM:
-                if(resultCode == CommonConstant.GOTO_EDIT_DIARY){
+                if (resultCode == CommonConstant.GOTO_EDIT_DIARY) {
                     DiaryItem diaryItem = (DiaryItem) data.getSerializableExtra("diary_item");
-                    int position = data.getIntExtra("position",0);
-                    diary.getDiaryItemArrayList().set(position,diaryItem);
-                    isDataChanged=true;
+                    int position = data.getIntExtra("position", 0);
+                    diary.getDiaryItemArrayList().set(position, diaryItem);
+                    isDataChanged = true;
                     diaryEditSwipeAdapter.notifyDataSetChanged();
                 }
             default:
@@ -180,14 +180,18 @@ public class EditDiaryActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (isDataChanged) {
-            Intent intent = EditDiaryActivity.this.getIntent().putExtra("diary", diary);
-            EditDiaryActivity.this.setResult(CommonConstant.GOTO_DETATIL_FROM_EDIT_DIARY, intent);
-            EditDiaryActivity.this.finish();
-        } else {
-            finish();
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (isDataChanged) {
+                    Intent intent = EditDiaryActivity.this.getIntent().putExtra("diary", diary);
+                    EditDiaryActivity.this.setResult(CommonConstant.GOTO_DETATIL_FROM_EDIT_DIARY, intent);
+                    EditDiaryActivity.this.finish();
+                } else {
+                    finish();
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                }
+                break;
         }
-        return  super.onKeyDown(keyCode,event);
+        return super.onKeyDown(keyCode, event);
     }
 }
