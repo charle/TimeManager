@@ -64,8 +64,8 @@
 
     <ImageView
             android:id="@+id/iv_weather"
-            android:layout_width="@dimen/padding40"
-            android:layout_height="@dimen/padding40"
+            android:layout_width="@dimen/padding50"
+            android:layout_height="@dimen/padding50"
             android:layout_marginRight="@dimen/padding_small"
             android:layout_gravity="right"
             android:src="@drawable/sunny"/>

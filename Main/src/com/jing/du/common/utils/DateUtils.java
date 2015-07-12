@@ -12,23 +12,29 @@ public class DateUtils {
     public static String getDateMonth(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        return String.valueOf(cal.get(Calendar.MONTH)+1);
+        return String.valueOf(cal.get(Calendar.MONTH) + 1);
     }
 
-    public static String getDateTian(Date date){
-            Calendar cal = Calendar.getInstance();
+    public static String getDateTian(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int tempDate = cal.get(Calendar.DATE);
-        if (tempDate<10){
-            return "0"+tempDate;
-        }else{
+        if (tempDate < 10) {
+            return "0" + tempDate;
+        } else {
             return String.valueOf(tempDate);
         }
     }
 
-    public static String getStringOfDate(Date date){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        String str=sdf.format(date);
+    public static String getStringOfDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String str = sdf.format(date);
+        return str;
+    }
+
+    public static String getSecondOfDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = sdf.format(date);
         return str;
     }
 }

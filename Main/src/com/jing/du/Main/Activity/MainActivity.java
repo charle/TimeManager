@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -11,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.jing.du.Main.FragmentView.HomeFragment;
+import com.jing.du.Main.FragmentView.MinderFragment;
 import com.jing.du.Main.FragmentView.SettingFragment;
 import com.jing.du.Main.FragmentView.TagFragment;
 import com.jing.du.Main.R;
@@ -41,10 +43,10 @@ public class MainActivity extends FragmentActivity implements
     ChangeColorIconWithText indicatorSetting;
     private List<Fragment> mTabs = new ArrayList<Fragment>();
     private HomeFragment homeFragment;
+    private MinderFragment minderFragment;
     private TagFragment tagFragment;
     private SettingFragment settingFragment;
 
-    private MyFragment fragmentTwo;
     private MyFragmentPagerAdapter mAdapter;
     private List<ChangeColorIconWithText> mTabIndicators = new ArrayList<ChangeColorIconWithText>();
 
@@ -74,7 +76,7 @@ public class MainActivity extends FragmentActivity implements
     private void initDatas() {
         setOverflowButtonAlways();
         homeFragment = new HomeFragment();
-        fragmentTwo = MyFragment.newInstance(R.layout.list);
+        minderFragment = new MinderFragment();
         tagFragment = new TagFragment();
         settingFragment = new SettingFragment();
 
@@ -84,7 +86,7 @@ public class MainActivity extends FragmentActivity implements
         mTabIndicators.add(indicatorSetting);
 
         mTabs.add(homeFragment);
-        mTabs.add(fragmentTwo);
+        mTabs.add(minderFragment);
         mTabs.add(tagFragment);
         mTabs.add(settingFragment);
 

@@ -35,8 +35,8 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:padding="5dp"
-                hyman:icon="@drawable/search"
-                hyman:text="@string/search"
+                hyman:icon="@drawable/list"
+                hyman:text="@string/list"
                 hyman:text_size="12sp"
                 hyman:color="#ff45c01a"/>
 
@@ -46,7 +46,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:padding="5dp"
-                hyman:icon="@drawable/main"
+                hyman:icon="@drawable/star"
                 hyman:text="@string/star"
                 hyman:text_size="12sp"
                 hyman:color="#ff45c01a"/>

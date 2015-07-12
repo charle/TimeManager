@@ -62,7 +62,8 @@
                 android:padding="@dimen/padding_small"
                 android:background="@drawable/setting_selector"
                 android:clickable="true"
-                android:minHeight="@dimen/padding40"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/padding50"
                 android:layout_height="wrap_content">
 
             <TextView
@@ -77,7 +78,6 @@
                 android:src="@drawable/divider"
                 android:layout_width="fill_parent"
                 android:layout_height="1px"
-                android:padding="@dimen/padding_small"
                 android:scaleType="fitXY"/>
 
         <TableRow
@@ -85,7 +85,7 @@
                 android:layout_width="fill_parent"
                 android:background="@drawable/setting_selector"
                 android:clickable="true"
-                android:minHeight="@dimen/padding40"
+                android:minHeight="@dimen/padding50"
                 android:padding="@dimen/padding_small"
                 android:gravity="center_vertical">
 
@@ -108,7 +108,7 @@
                 android:layout_width="fill_parent"
                 android:clickable="true"
                 android:background="@drawable/setting_selector"
-                android:minHeight="@dimen/padding40"
+                android:minHeight="@dimen/padding50"
                 android:padding="@dimen/padding_small"
                 android:gravity="center_vertical">
 
