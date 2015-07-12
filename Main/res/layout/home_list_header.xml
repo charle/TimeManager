@@ -83,7 +83,6 @@
                 android:layout_marginRight="@dimen/padding_medium"
                 android:textSize="@dimen/textsize_larger"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:text="@string/create_diary"/>
     </LinearLayout>
 </RelativeLayout>

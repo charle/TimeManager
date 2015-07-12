@@ -17,19 +17,25 @@
     + 利用actionbar--menu菜单
     + 注意activity之间的通信
 
-![](images/new.png)
+![](images/new_diary.png)
 
 - 详情日记页
     + 利用actionbar--menu菜单
     + 注意activity之间的通信
 
-![](images/detail.png)
+![](images/diary_detail.png)
 
 - 编辑日记页
     + 利用actionbar--menu菜单
     + 注意activity之间的通信
 
-![](images/edit.png)
+![](images/edit_diary.png)
+
+- 编辑日记条目页
+    + 利用actionbar--menu菜单
+    + 注意activity之间的通信
+
+![](images/edit_diary_item.png)
 
 - 标签管理页
     + 系统默认的一些标签
@@ -37,6 +43,11 @@
     
 ![](images/tags.png)
 
+
+- 事件提醒页
+    + 事件分成紧急，重要，暂缓，已处理
+    
+![](images/minder.png)
 
 - 设置页
     + 主要是个人信息管理

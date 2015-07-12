@@ -8,7 +8,7 @@
     <string name="setting">设置</string>
     <string name="add_category">增加</string>
     <string name="create_diary">记录生活点滴</string>
-    <string name="create_minder">创建个人事件提醒</string>
+    <string name="create_minder">新建个人事件提醒</string>
     <string name="del_category">删除</string>
     <string name="edit_category">编辑</string>
     <string name="add_tag">增加标签</string>
