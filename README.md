@@ -49,6 +49,11 @@
     
 ![](images/minder.png)
 
+
+- 新建事件提醒页
+    
+![](images/create_minder.png)
+
 - 设置页
     + 主要是个人信息管理
     + 进入密码管理
