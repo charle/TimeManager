@@ -1,11 +1,13 @@
 package com.jing.du.Main.Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import butterknife.ButterKnife;
@@ -19,7 +21,6 @@ import com.jing.du.Main.R;
 import com.jing.du.common.adapter.MyFragmentPagerAdapter;
 import com.jing.du.common.utils.Log;
 import com.jing.du.common.view.ChangeColorIconWithText;
-import com.jing.du.common.view.MyFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -195,5 +196,33 @@ public class MainActivity extends FragmentActivity implements
     protected void onResume() {
         super.onResume();
         Log.d("activity is resume");
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            dialog();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    protected void dialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("确认退出应用吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 }

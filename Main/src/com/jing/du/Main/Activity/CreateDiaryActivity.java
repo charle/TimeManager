@@ -262,7 +262,7 @@ public class CreateDiaryActivity extends BaseActivity {
             case R.id.action_save:
                 if (!diaryItemAddedFlag) {
                     finish();
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
                 } else {
                     Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary", diary);
                     CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);

@@ -140,6 +140,7 @@ public class DiaryDetailActivity extends BaseActivity {
                 Intent intent = DiaryDetailActivity.this.getIntent();
                 DiaryDetailActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
                 DiaryDetailActivity.this.finish();
+                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -181,7 +182,7 @@ public class DiaryDetailActivity extends BaseActivity {
                     DiaryDetailActivity.this.finish();
                 } else {
                     finish();
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 break;
         }

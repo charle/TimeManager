@@ -36,6 +36,13 @@ public class CommonConstant {
     public static final int GOTO_EDIT_DIARY_ITEM = 6;
     public static final int GOTO_DETATIL_FROM_EDIT_DIARY = 7;
     public static final int GOTO_CREATE_MINDER = 8;
+    public static final int GOTO_DETAIL_MINDER = 9;
+    public static final int GOTO_MINDER_FLAGMENT = 10;
+
+    public static final String EMERGENCY = "紧急";
+    public static final String IMPORTANT = "重要";
+    public static final String DELAY = "可暂缓";
+    public static final String RESOVLED = "已处理";
 
     public static final int RESOUCE_EMERGENCY = R.drawable.emergency;
     public static final int RESOUCE_IMPORTANT = R.drawable.important;
@@ -43,10 +50,11 @@ public class CommonConstant {
     public static final int RESOUCE_RESOVLED = R.drawable.resovled;
 
     public static final int COLOR_EMERGENCY = Color.RED;
-    public static final int COLOR_IMPORTANT = Color.rgb(37,244,115);
-    public static final int COLOR_DELAY = Color.rgb(11,182,245);
+    public static final int COLOR_IMPORTANT = Color.rgb(37, 244, 115);
+    public static final int COLOR_DELAY = Color.rgb(11, 182, 245);
     public static final int COLOR_RESOVLED = Color.GRAY;
 
-    public static final int[] MINDER_RESOUCE = {RESOUCE_EMERGENCY,RESOUCE_IMPORTANT,RESOUCE_DELAY,RESOUCE_RESOVLED};
-    public static final int[] MINDER_COLOR = {COLOR_EMERGENCY,COLOR_IMPORTANT,COLOR_DELAY,COLOR_RESOVLED};
+    public static final String[] MINDER_STATE = {EMERGENCY,IMPORTANT,DELAY,RESOVLED};
+    public static final int[] MINDER_RESOUCE = {RESOUCE_EMERGENCY, RESOUCE_IMPORTANT, RESOUCE_DELAY, RESOUCE_RESOVLED};
+    public static final int[] MINDER_COLOR = {COLOR_EMERGENCY, COLOR_IMPORTANT, COLOR_DELAY, COLOR_RESOVLED};
 }

@@ -53,5 +53,7 @@
     <string name="personal_sign">个信签名</string>
     <string name="minder_title">请输入事件标题</string>
     <string name="minder_content">请输入事件内容</string>
+    <string name="menu_edit_minder">编辑事件</string>
+    <string name="menu_delete_minder">删除事件</string>
 
 </resources>

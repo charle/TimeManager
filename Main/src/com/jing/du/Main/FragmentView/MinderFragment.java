@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.jing.du.Main.Activity.CreateMinderActivity;
+import com.jing.du.Main.Activity.DetailMinderActivity;
 import com.jing.du.Main.Adapter.MinderAdapter;
 import com.jing.du.Main.Model.Minder;
 import com.jing.du.Main.R;
@@ -51,6 +52,14 @@ public class MinderFragment extends ListFragment implements CommonInit {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putInt("minder_id", list.get(position).getId());
+        bundle.putInt("position", position);
+        intent.putExtras(bundle);
+        intent.setClass(context, DetailMinderActivity.class);
+        startActivityForResult(intent, CommonConstant.GOTO_DETAIL_MINDER);
+        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -58,7 +67,7 @@ public class MinderFragment extends ListFragment implements CommonInit {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                list = DataSupport.order("createtime desc").find(Minder.class,true);
+                list = DataSupport.order("createtime desc").find(Minder.class, true);
                 mHandler.sendEmptyMessage(1);
             }
         }).start();
@@ -66,14 +75,14 @@ public class MinderFragment extends ListFragment implements CommonInit {
 
     @Override
     public void initViews() {
-        TextView textView = (TextView)mainView.findViewById(R.id.tv_create_new_minder);
+        TextView textView = (TextView) mainView.findViewById(R.id.tv_create_new_minder);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), CreateMinderActivity.class);
                 startActivityForResult(intent, CommonConstant.GOTO_CREATE_MINDER);
-                getActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -107,5 +116,28 @@ public class MinderFragment extends ListFragment implements CommonInit {
     public void refreshView() {
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CommonConstant.GOTO_DETAIL_MINDER:
+                if (resultCode == CommonConstant.GOTO_MINDER_FLAGMENT) {
+                    int position = data.getIntExtra("position", 0);
+                    list.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
+                break;
+            case CommonConstant.GOTO_CREATE_MINDER:
+                if (resultCode == CommonConstant.GOTO_MINDER_FLAGMENT) {
+                    Minder minder = (Minder)data.getSerializableExtra("minder");
+                    list.add(0,minder);
+                    adapter.notifyDataSetChanged();
+                }
+            default:
+                break;
+        }
+    }
+
 
 }

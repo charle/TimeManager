@@ -138,6 +138,7 @@ public class EditDiaryActivity extends BaseActivity {
                 Intent intent = EditDiaryActivity.this.getIntent().putExtra("diary", diary);
                 EditDiaryActivity.this.setResult(CommonConstant.GOTO_DIARY_DETAIL, intent);
                 EditDiaryActivity.this.finish();
+                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
                 break;
             case R.id.action_add:
                 Intent intent1 = new Intent();
@@ -188,7 +189,7 @@ public class EditDiaryActivity extends BaseActivity {
                     EditDiaryActivity.this.finish();
                 } else {
                     finish();
-                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 break;
         }
