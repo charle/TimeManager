@@ -56,6 +56,7 @@
 
 - 事件提醒详情页
     + 可进删除与进编辑页操作
+    
 ![](images/minder_detail.png)
 
 - 设置页
