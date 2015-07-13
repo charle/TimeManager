@@ -52,6 +52,7 @@
             android:text="@string/default_text"
             android:layout_marginTop="@dimen/padding_micro"
             android:layout_below="@id/tv_minder_title"
+            android:padding="@dimen/padding_micro"
             android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -49,6 +49,9 @@ public class DiaryAdapter extends MyBaseAdapter {
         ((TextView) myBaseHolder.views[1]).setText(DateUtils.getDateMonth(tempDairy.getCreateTime()));
         ((ImageView) myBaseHolder.views[5]).setImageResource(CommonConstant.WEATHER_RESOUCE[tempDairy.getWeatherType()]);
         List<? extends DataSupport> diaryItems = ((Diary) mData.get(position)).getDiaryItemArrayList();
+        if(diaryItems==null || diaryItems.size()==0)
+            return convertView;
+
         if(diaryItems.size()==1){
             ((TextView) myBaseHolder.views[2]).setText(getAllDiaryItemInfo((DiaryItem)diaryItems.get(0)));
             ((TextView) myBaseHolder.views[3]).setText("");

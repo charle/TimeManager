@@ -187,6 +187,7 @@ public class EditDiaryActivity extends BaseActivity {
                     Intent intent = EditDiaryActivity.this.getIntent().putExtra("diary", diary);
                     EditDiaryActivity.this.setResult(CommonConstant.GOTO_DETATIL_FROM_EDIT_DIARY, intent);
                     EditDiaryActivity.this.finish();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
                     finish();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

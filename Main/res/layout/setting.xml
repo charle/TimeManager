@@ -81,7 +81,7 @@
                 android:scaleType="fitXY"/>
 
         <TableRow
-                android:id="@+id/tr_password"
+                android:id="@+id/tr_output_event"
                 android:layout_width="fill_parent"
                 android:background="@drawable/setting_selector"
                 android:clickable="true"
@@ -91,8 +91,8 @@
 
             <TextView
                     android:gravity="center_vertical"
-                    android:text="@string/set_password"
-                    android:drawableLeft="@drawable/password_lock"
+                    android:text="@string/output_event"
+                    android:drawableLeft="@drawable/output_event"
                     android:drawablePadding="@dimen/padding_small"/>
         </TableRow>
     </TableLayout>
@@ -116,6 +116,28 @@
                     android:gravity="center_vertical"
                     android:text="@string/personal_sign"
                     android:drawableLeft="@drawable/sign"
+                    android:drawablePadding="@dimen/padding_small"/>
+        </TableRow>
+
+        <ImageView
+                android:src="@drawable/divider"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:scaleType="fitXY"/>
+
+        <TableRow
+                android:id="@+id/tr_password"
+                android:layout_width="fill_parent"
+                android:background="@drawable/setting_selector"
+                android:clickable="true"
+                android:minHeight="@dimen/padding50"
+                android:padding="@dimen/padding_small"
+                android:gravity="center_vertical">
+
+            <TextView
+                    android:gravity="center_vertical"
+                    android:text="@string/set_password"
+                    android:drawableLeft="@drawable/password_lock"
                     android:drawablePadding="@dimen/padding_small"/>
         </TableRow>
     </TableLayout>

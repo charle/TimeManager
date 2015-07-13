@@ -38,6 +38,7 @@ public class MinderAdapter extends MyBaseAdapter {
             myBaseHolder.views[2] = (ImageView) convertView.findViewById(R.id.iv_minder_type);
             convertView.setTag(myBaseHolder);
         }
+
         Minder minder = (Minder)mData.get(position);
         ((TextView) myBaseHolder.views[0]).setText(minder.getTitle());
         ((TextView) myBaseHolder.views[0]).setTextColor(CommonConstant.MINDER_COLOR[minder.getMinderType()]);

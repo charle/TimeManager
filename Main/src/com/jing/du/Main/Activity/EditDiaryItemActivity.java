@@ -210,6 +210,7 @@ public class EditDiaryItemActivity extends BaseActivity {
                 Intent intent = EditDiaryItemActivity.this.getIntent().putExtra("diary_item", diaryItem);
                 EditDiaryItemActivity.this.setResult(CommonConstant.GOTO_EDIT_DIARY, intent);
                 EditDiaryItemActivity.this.finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             default:
                 break;

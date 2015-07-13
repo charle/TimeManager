@@ -1,5 +1,6 @@
 package com.jing.du.Main.FragmentView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -115,9 +116,6 @@ public class TagFragment extends Fragment implements CommonInit {
                         categoyAdapter.notifyDataSetChanged();
                     case 2:
                         notifyDataSetChanged();
-                        break;
-                    case 3:
-                        categoyAdapter.notifyDataSetChanged();
                         break;
                 }
             }

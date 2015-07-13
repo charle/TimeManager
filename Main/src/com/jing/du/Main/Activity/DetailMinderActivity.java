@@ -91,7 +91,13 @@ public class DetailMinderActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_edit:
-
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("minder_id",minderId);
+                intent.putExtras(bundle);
+                intent.setClass(this, CreateMinderActivity.class);
+                startActivityForResult(intent, CommonConstant.GOTO_CREATE_MINDER);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 break;
             case R.id.action_delete:
                 dialog();
@@ -124,6 +130,19 @@ public class DetailMinderActivity extends BaseActivity {
             }
         });
         builder.create().show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case CommonConstant.GOTO_CREATE_MINDER:
+                if(resultCode==CommonConstant.GOTO_MINDER_FLAGMENT){
+                    mindder = (Minder)data.getSerializableExtra("minder");
+                    mHandler.sendEmptyMessage(1);
+                }
+                break;
+        }
     }
 }
 

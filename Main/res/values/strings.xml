@@ -37,6 +37,7 @@
     <string name="category">分类</string>
     <string name="tag">标签</string>
     <string name="output">导出你的日记</string>
+    <string name="output_event">导出你的事件</string>
     <string name="upload_evernote">上传到印象笔记</string>
     <string name="set_password">设置密码</string>
     <string name="create_time">创建时间</string>

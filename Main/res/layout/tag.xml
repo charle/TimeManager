@@ -51,6 +51,4 @@
             android:footerDividersEnabled="true">
     </ListView>
 
-    <!--<include layout="@layout/lay_progress_bar" android:id="@+id/lv_progress_bar"/>-->
-
 </LinearLayout>
