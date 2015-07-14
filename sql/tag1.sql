@@ -1,0 +1,10 @@
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (1, 0, '日常上班', 1);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (2, 1, '看书', 2);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (3, 2, '逛街', 3);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (4, 3, '旅游', 3);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (5, 4, '健身', 3);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (6, 5, '看电影', 4);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (10, 9, '聊天', 4);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (29, 9, 'android', 2);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (30, 9, '后台', 1);
+INSERT INTO tag (id, defaulttype, name, category_id) VALUES (31, 9, 'java', 2);

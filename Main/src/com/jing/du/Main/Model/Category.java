@@ -15,6 +15,8 @@ public class Category extends DataSupport implements Serializable{
     private List<DiaryItem> diaryItems = new ArrayList<DiaryItem>();
     private List<Tag> tagList = new ArrayList<Tag>();
 
+    private int defaultType;
+
     public int getId() {
         return id;
     }
@@ -45,5 +47,13 @@ public class Category extends DataSupport implements Serializable{
 
     public void setDiaryItems(List<DiaryItem> diaryItems) {
         this.diaryItems = diaryItems;
+    }
+
+    public int getDefaultType() {
+        return defaultType;
+    }
+
+    public void setDefaultType(int defaultType) {
+        this.defaultType = defaultType;
     }
 }

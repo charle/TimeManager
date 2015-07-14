@@ -51,5 +51,20 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
+        <activity
+                android:name=".Activity.DetailCategoryActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.DeviceDefault.Light">
+        </activity>
+        <activity
+                android:name=".Activity.EditCategoryActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.DeviceDefault.Light">
+        </activity>
+        <activity
+                android:name=".Activity.EditTagActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.DeviceDefault.Light">
+        </activity>
     </application>
 </manifest>

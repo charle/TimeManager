@@ -40,6 +40,12 @@
         </com.beardedhen.androidbootstrap.BootstrapButton>
     </LinearLayout>
 
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider"/>
+
     <ListView
             android:id="@+id/lv_category"
             android:layout_width="fill_parent"
@@ -51,4 +57,9 @@
             android:footerDividersEnabled="true">
     </ListView>
 
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider"/>
 </LinearLayout>

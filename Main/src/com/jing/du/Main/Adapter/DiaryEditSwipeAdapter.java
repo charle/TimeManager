@@ -3,12 +3,14 @@ package com.jing.du.Main.Adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.jing.du.Main.Model.DiaryItem;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.AddDiaryItemViewHolder;
 import com.jing.du.common.adapter.SwipeListBaseAdapter;
+import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
 import org.litepal.crud.DataSupport;
@@ -44,6 +46,7 @@ public class DiaryEditSwipeAdapter extends SwipeListBaseAdapter {
             addDiaryItemViewHolder.views[5] = (LinearLayout) converView.findViewById(R.id.ll_main_part);
             addDiaryItemViewHolder.views[6] = (LinearLayout) converView.findViewById(R.id.ll_left_part);
             addDiaryItemViewHolder.views[7] = (LinearLayout) converView.findViewById(R.id.ll_right_part);
+            addDiaryItemViewHolder.views[8] = (ImageView) converView.findViewById(R.id.iv_tag_icon);
             converView.setTag(addDiaryItemViewHolder);
         }
 
@@ -66,6 +69,7 @@ public class DiaryEditSwipeAdapter extends SwipeListBaseAdapter {
         ((TextView) addDiaryItemViewHolder.views[2]).setText(item.getBeginTime());
         ((TextView) addDiaryItemViewHolder.views[3]).setText(item.getEndTime());
         ((TextView) addDiaryItemViewHolder.views[4]).setText(item.getNote());
+        ((ImageView)addDiaryItemViewHolder.views[8]).setImageResource(CommonConstant.RESOUCE_TAG[item.getTag().getDefaultType()]);
         Log.d("diary-edit-swipe-adpate data inited");
     }
 

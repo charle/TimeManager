@@ -11,6 +11,7 @@
     <string name="create_minder">新建个人事件提醒</string>
     <string name="del_category">删除</string>
     <string name="edit_category">编辑</string>
+    <string name="save">保存</string>
     <string name="add_tag">增加标签</string>
     <string name="default_text">暂无文字</string>
     <string name="sample_text">如果你浪费了自己的年龄，那是挺可悲的。因为你的青春只能持续一点儿时间——很短的一点儿时间</string>
@@ -18,6 +19,7 @@
     <string name="add_category_hint">请输入要增加的分类</string>
     <string name="add_tag_hint">请输入要增加的标签</string>
     <string name="empty_warning">分类标签不能为空</string>
+    <string name="empty_tag_warning">标签不能为空</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="default_date">27</string>
@@ -56,5 +58,9 @@
     <string name="minder_content">请输入事件内容</string>
     <string name="menu_edit_minder">编辑事件</string>
     <string name="menu_delete_minder">删除事件</string>
+    <string name="menu_save_category">保存分类</string>
+    <string name="menu_delete_category">删除分类</string>
+    <string name="menu_edit_category">编辑分类</string>
+    <string name="menu_save_tag">保存标签</string>
 
 </resources>

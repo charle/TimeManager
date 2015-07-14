@@ -83,7 +83,7 @@ public class DetailMinderActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.diary_detail, menu);
+        getMenuInflater().inflate(R.menu.minder_detail, menu);
         return true;
     }
 

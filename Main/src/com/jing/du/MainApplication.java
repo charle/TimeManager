@@ -22,7 +22,7 @@ public class MainApplication extends LitePalApplication {
     private static String DB_PATH = "/data/data/com.jing.du.Main/databases/";
     private static final String DB_NAME = "du_time.db";
     private Context context;
-
+    public static boolean dataLoaded = false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,11 +55,13 @@ public class MainApplication extends LitePalApplication {
                         myInput.close();
                     }catch (Exception e){
                         e.printStackTrace();
+                    }finally {
+                        dataLoaded = true;
                     }
-
-
                 }
             }).start();
+        }else{
+            dataLoaded = true;
         }
 
     }

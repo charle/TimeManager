@@ -17,4 +17,9 @@
             sp:right_width="@dimen/padding150"
             />
 
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider"/>
 </LinearLayout>

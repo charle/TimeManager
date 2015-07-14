@@ -45,8 +45,8 @@ public class MinderFragment extends ListFragment implements CommonInit {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.context = getActivity();
-        initData();
         initHandler();
+        initData();
     }
 
     @Override

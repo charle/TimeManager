@@ -4,56 +4,70 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TableLayout
-            android:id="@+id/tl_one"
+    <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_marginRight="@dimen/padding_small"
-            android:layout_marginLeft="@dimen/padding_small"
-            android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                    android:textSize="@dimen/textsize_medium"
-                    android:text="@string/category"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TableLayout
+                android:id="@+id/tl_one"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                        android:textSize="@dimen/textsize_medium"
+                        android:text="@string/category"/>
 
-            <TextView
-                    android:id="@+id/category_name"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:text="@string/category"
-                    android:textSize="@dimen/textsize_medium"/>
+                <TextView
+                        android:id="@+id/category_name"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:text="@string/category"
+                        android:textSize="@dimen/textsize_medium"/>
 
-            <TextView
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:text="@string/tag"/>
+                <TextView
+                        android:textSize="@dimen/textsize_medium"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:text="@string/tag"/>
 
-            <TextView
-                    android:id="@+id/tag_name"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:textSize="@dimen/textsize_medium"/>
-        </TableRow>
+                <TextView
+                        android:id="@+id/tag_name"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:textSize="@dimen/textsize_medium"/>
+            </TableRow>
 
-        <TableRow>
-            <TextView
-                    android:text="@string/begin_time"
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_span="1"/>
-            <TextView
-                    android:id="@+id/tv_begin_time"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_span="1"/>
-            <TextView
-                    android:text="@string/end_time"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_span="1"/>
-            <TextView
-                    android:id="@+id/tv_end_time"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:textSize="@dimen/textsize_medium"
-                    android:layout_span="1"/>
-        </TableRow>
-    </TableLayout>
+            <TableRow>
+                <TextView
+                        android:text="@string/begin_time"
+                        android:textSize="@dimen/textsize_medium"
+                        android:layout_span="1"/>
+                <TextView
+                        android:id="@+id/tv_begin_time"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:textSize="@dimen/textsize_medium"
+                        android:layout_span="1"/>
+                <TextView
+                        android:text="@string/end_time"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:textSize="@dimen/textsize_medium"
+                        android:layout_span="1"/>
+                <TextView
+                        android:id="@+id/tv_end_time"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:textSize="@dimen/textsize_medium"
+                        android:layout_span="1"/>
+            </TableRow>
+        </TableLayout>
+
+        <ImageView
+                android:layout_width="@dimen/padding30"
+                android:layout_height="@dimen/padding30"
+                android:id="@+id/iv_tag_icon"
+                android:scaleType="fitXY"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/padding_small"
+                android:src="@drawable/others"/>
+    </LinearLayout>
 
     <TableLayout
             android:layout_width="match_parent"

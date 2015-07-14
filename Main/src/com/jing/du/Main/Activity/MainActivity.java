@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -18,6 +19,7 @@ import com.jing.du.Main.FragmentView.MinderFragment;
 import com.jing.du.Main.FragmentView.SettingFragment;
 import com.jing.du.Main.FragmentView.TagFragment;
 import com.jing.du.Main.R;
+import com.jing.du.MainApplication;
 import com.jing.du.common.adapter.MyFragmentPagerAdapter;
 import com.jing.du.common.utils.Log;
 import com.jing.du.common.view.ChangeColorIconWithText;
@@ -56,6 +58,14 @@ public class MainActivity extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        while (!MainApplication.dataLoaded) {
+            try{
+                Thread.sleep(500);//等待第一次初始化数据加载完毕
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
         setContentView(R.layout.main);
         ButterKnife.inject(this);
         afterInitView();

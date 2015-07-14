@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:padding="@dimen/padding_micro"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_micro"
+            android:layout_marginTop="@dimen/padding_micro"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/et_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/padding_micro"
+                android:hint="@string/add_tag_hint"
+                bootstrap:be_roundedCorners="true"
+                bootstrap:be_state="success">
+        </com.beardedhen.androidbootstrap.BootstrapEditText>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bt_add_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_micro"
+                android:layout_marginRight="@dimen/padding_micro"
+                bootstrap:bb_size="small"
+                bootstrap:bb_type="success"
+                android:layout_gravity="right"
+                android:text="@string/add_category">
+        </com.beardedhen.androidbootstrap.BootstrapButton>
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider"/>
+
+    <ListView
+            android:id="@+id/lv_tag"
+            android:layout_width="fill_parent"
+            android:divider="@drawable/divider"
+            android:dividerHeight="1px"
+            android:cacheColorHint="#00000000"
+            android:listSelector="@drawable/default_selector"
+            android:layout_height="wrap_content"/>
+
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:scaleType="fitXY"
+            android:src="@drawable/divider"/>
+</LinearLayout>

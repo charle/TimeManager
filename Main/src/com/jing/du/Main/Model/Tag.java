@@ -9,11 +9,12 @@ import java.util.List;
 /**
  * Created by charle-chen on 15/6/21.
  */
-public class Tag  extends DataSupport implements Serializable{
+public class Tag extends DataSupport implements Serializable {
     private int id;
     private Category category;
     private String name;
     private List<DiaryItem> diaryItems = new ArrayList<DiaryItem>();
+    private int defaultType;
 
     public int getId() {
         return id;
@@ -46,4 +47,13 @@ public class Tag  extends DataSupport implements Serializable{
     public void setDiaryItems(List<DiaryItem> diaryItems) {
         this.diaryItems = diaryItems;
     }
+
+    public int getDefaultType() {
+        return defaultType;
+    }
+
+    public void setDefaultType(int defaultType) {
+        this.defaultType = defaultType;
+    }
+
 }

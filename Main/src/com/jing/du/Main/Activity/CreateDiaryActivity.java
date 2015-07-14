@@ -67,6 +67,8 @@ public class CreateDiaryActivity extends BaseActivity {
     BootstrapButton btCreateDiary;
     @InjectView(R.id.lv_add_diary_item)
     LinearLayout lvAddDiaryItem;
+    @InjectView(R.id.ll_diary_header)
+    LinearLayout llDiaryHeader;
 
     private List<Category> categoryList = new ArrayList<Category>();
     private int oneSpinnerId;
@@ -100,6 +102,7 @@ public class CreateDiaryActivity extends BaseActivity {
                     break;
                 case 2:
                     lvAddDiaryItem.setVisibility(View.INVISIBLE);
+                    llDiaryHeader.setVisibility(View.GONE);
                     Toast.show(CreateDiaryActivity.this, "成功", 1000);
                     addDiaryItemAdapter.notifyDataSetChanged();
                     break;

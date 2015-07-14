@@ -43,6 +43,13 @@
     
 ![](images/tags.png)
 
+- 分类详情页
+    
+![](images/detail_category.png)
+
+- 分类标签编辑页
+    
+![](images/edit_category.png)
 
 - 事件提醒页
     + 事件分成紧急，重要，暂缓，已处理
