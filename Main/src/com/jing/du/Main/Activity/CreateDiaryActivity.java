@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,9 +120,11 @@ public class CreateDiaryActivity extends BaseActivity {
         diary = (Diary) intent.getSerializableExtra("diary");
         if (!StringUtils.isObjectEmpty(diary)) {
             diaryItems = diary.getDiaryItemArrayList();
+            llDiaryHeader.setVisibility(View.GONE);
             diaryItemAddedFlag = true;
         } else {
             diary = new Diary();
+            diary.setDiaryItemArrayList(diaryItems);
         }
         Log.d(diary.getId() + ">>>>>>>>>>>>>>>>>>>>>>");
         afterInitView();
@@ -245,7 +248,7 @@ public class CreateDiaryActivity extends BaseActivity {
     }
 
     @OnItemSelected({R.id.sp_weather})
-    void weatherSpinnerItemSelected(int position){
+    void weatherSpinnerItemSelected(int position) {
         weatherSpinnerId = position;
     }
 
@@ -270,6 +273,7 @@ public class CreateDiaryActivity extends BaseActivity {
                     Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary", diary);
                     CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
                     CreateDiaryActivity.this.finish();
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
                 break;
             default:
@@ -299,5 +303,21 @@ public class CreateDiaryActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (!diaryItemAddedFlag) {
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right);
+            } else {
+                Intent intent = CreateDiaryActivity.this.getIntent().putExtra("diary", diary);
+                CreateDiaryActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
+                CreateDiaryActivity.this.finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        }
+        return true;
     }
 }

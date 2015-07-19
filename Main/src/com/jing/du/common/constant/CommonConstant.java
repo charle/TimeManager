@@ -42,6 +42,15 @@ public class CommonConstant {
     public static final int GOTO_TAG_FRAGMENT = 12;
     public static final int GOTO_EDIT_CATEGORY = 13;
     public static final int GOTO_EDIT_TAG_ITEM = 14;
+    public static final int GOTO_MINDER_FLAGMENT_CHANGE = 15;
+    public static final int GOTO_CLIP_IMAGE = 16;
+    public static final int GOTO_SET_FRAGMENT = 17;
+    public static final int GOTO_PICK_IMAGE = 18;
+    public static final int GOTO_EDIT_SIGN = 19;
+    public static final int GOTO_EDIT_NICKNAME = 20;
+
+    public static final int EDIT_SIGN = 1;
+    public static final int EDIT_NICKNAME = 2;
 
     public static final String EMERGENCY = "紧急";
     public static final String IMPORTANT = "重要";
@@ -102,5 +111,6 @@ public class CommonConstant {
     public static final int[] RESOUCE_TAG = {RESOUCE_TAG_WORK,RESOUCE_TAG_READING,RESOUCE_TAG_SHOPING,RESOUCE_TAG_TRAVEL,RESOUCE_TAG_BUILD,
     RESOUCE_TAG_MOVIE,RESOUCE_TAG_SERIES,RESOUCE_TAG_MUSIC,RESOUCE_TAG_INTERNET,RESOUCE_TAG_OTHERS};
 
+    public static final String PROFILE_PATH="/sdcard/TimeMananger/header.jpg";
 
 }

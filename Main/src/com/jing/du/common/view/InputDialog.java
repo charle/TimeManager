@@ -8,6 +8,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
+import com.jing.du.Main.Activity.EditCategoryActivity;
 import com.jing.du.Main.Activity.MainActivity;
 import com.jing.du.Main.Model.Category;
 import com.jing.du.Main.Model.Tag;
@@ -18,7 +19,7 @@ import org.litepal.crud.DataSupport;
 /**
  * Created by charle-chen on 15/6/26.
  */
-public class InputDialog {
+public class InputDialog{
 
     public static final int ADD_TAG = 1;
     public static final int EDIT_CATEGORY = 2;
@@ -28,12 +29,14 @@ public class InputDialog {
     private int layoutId;
     private Context context;
     private int operatorId;
+    private DataSupport data;
 
-    public InputDialog(Context context, int layoutId, int id, int operatorId) {
+    public InputDialog(Context context, int layoutId, int id, int operatorId,DataSupport data) {
         this.layoutId = layoutId;
         this.context = context;
         this.id = id;
         this.operatorId = operatorId;
+        this.data = data;
     }
 
     public void initView() {
@@ -99,7 +102,6 @@ public class InputDialog {
                     category.update(id);
                 }
             }).start();
-
         }
     }
 
@@ -116,5 +118,25 @@ public class InputDialog {
                 }
             }).start();
         }
+
+        if(call!=null){
+            ((Category)data).getTagList().get(0).setName(textString);
+            call.refresh();
+        }
     }
+
+    /**
+     * 单击事件监听器
+     */
+
+    protected myCallBack call = null;
+
+    public void setCall(myCallBack call) {
+        this.call = call;
+    }
+
+    public interface myCallBack {
+        void refresh();
+    }
+
 }

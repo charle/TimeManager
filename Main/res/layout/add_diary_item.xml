@@ -4,59 +4,84 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TableLayout
-            android:id="@+id/tl_one"
+    <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                    android:padding="@dimen/padding_micro"
-                    android:text="@string/category"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                    android:id="@+id/category_name"
-                    android:text="@string/category"
-                    android:padding="@dimen/padding_micro"
-                    android:textColor="@color/bbutton_danger"/>
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                    android:padding="@dimen/padding_micro"
-                    android:text="@string/tag"/>
+            <TableLayout
+                    android:id="@+id/tl_one"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                <TableRow>
+                    <TextView
+                            android:padding="@dimen/padding_micro"
+                            android:text="@string/category"/>
 
-            <TextView
-                    android:id="@+id/tag_name"
-                    android:padding="@dimen/padding_micro"
-                    android:textColor="@color/bbutton_danger"/>
-        </TableRow>
+                    <TextView
+                            android:id="@+id/category_name"
+                            android:text="@string/category"
+                            android:padding="@dimen/padding_micro"
+                            android:textColor="@color/bbutton_danger"/>
 
-        <TableRow>
-            <TextView
-                    android:text="@string/begin_time"
-                    android:padding="@dimen/padding_micro"
-                    android:layout_span="1"/>
-            <TextView
-                    android:id="@+id/tv_begin_time"
-                    android:padding="@dimen/padding_micro"
-                    android:textColor="@color/bbutton_danger"
-                    android:layout_span="3"/>
-        </TableRow>
+                    <TextView
+                            android:padding="@dimen/padding_micro"
+                            android:text="@string/tag"/>
 
-        <TableRow>
-            <TextView
-                    android:text="@string/end_time"
-                    android:padding="@dimen/padding_micro"
-                    android:layout_span="1"/>
-            <TextView
-                    android:id="@+id/tv_end_time"
-                    android:textColor="@color/bbutton_danger"
-                    android:padding="@dimen/padding_micro"
-                    android:layout_span="3"/>
-        </TableRow>
+                    <TextView
+                            android:id="@+id/tag_name"
+                            android:padding="@dimen/padding_micro"
+                            android:textColor="@color/bbutton_danger"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:text="@string/begin_time"
+                            android:padding="@dimen/padding_micro"
+                            android:layout_span="1"/>
+                    <TextView
+                            android:id="@+id/tv_begin_time"
+                            android:padding="@dimen/padding_micro"
+                            android:textColor="@color/bbutton_danger"
+                            android:layout_span="3"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                            android:text="@string/end_time"
+                            android:padding="@dimen/padding_micro"
+                            android:layout_span="1"/>
+                    <TextView
+                            android:id="@+id/tv_end_time"
+                            android:textColor="@color/bbutton_danger"
+                            android:padding="@dimen/padding_micro"
+                            android:layout_span="3"/>
+                </TableRow>
+
+            </TableLayout>
+
+            <ImageView
+                    android:layout_width="@dimen/padding30"
+                    android:layout_height="@dimen/padding30"
+                    android:id="@+id/iv_tag_icon"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/padding_small"
+                    android:src="@drawable/others"/>
+        </LinearLayout>
+
 
         <TableLayout
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:shrinkColumns="1">
+
             <TableRow>
                 <TextView
                         android:text="@string/diary_note"
@@ -72,7 +97,6 @@
             </TableRow>
         </TableLayout>
 
-
-    </TableLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -26,10 +26,12 @@
 
             <com.jing.du.common.view.MyInnerListView
                     android:id="@+id/lv_diary_item"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:divider="@null">
+                    android:listSelector="@drawable/default_selector"
+                    android:dividerHeight="1px"
+                    android:divider="@drawable/divider">
             </com.jing.du.common.view.MyInnerListView>
         </LinearLayout>
 

@@ -41,13 +41,17 @@ public class CreateMinderActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                    break;
-                case 2:
                     etMinderTitle.setText(minder.getTitle());
                     etMinderContent.setText(minder.getContent());
                     minderTypeSpinnerId = minder.getMinderType();
                     spMinderType.setSelection(minderTypeSpinnerId);
+                    break;
+                case 2:
+                    Intent intent = CreateMinderActivity.this.getIntent();
+                    intent.putExtra("minder", minder);
+                    CreateMinderActivity.this.setResult(CommonConstant.GOTO_MINDER_FLAGMENT, intent);
+                    CreateMinderActivity.this.finish();
+                    CreateMinderActivity.this.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     break;
             }
         }
@@ -86,7 +90,7 @@ public class CreateMinderActivity extends BaseActivity {
                 public void run() {
                     minder = DataSupport.find(Minder.class, minderId);
                     if (!StringUtils.isObjectEmpty(minder)) {
-                        mHandler.sendEmptyMessage(2);
+                        mHandler.sendEmptyMessage(1);
                     }
                 }
             }).start();
@@ -123,11 +127,7 @@ public class CreateMinderActivity extends BaseActivity {
                             minder.setMinderType(minderTypeSpinnerId);
                             minder.save();
                         }
-                        Intent intent = CreateMinderActivity.this.getIntent();
-                        intent.putExtra("minder", minder);
-                        CreateMinderActivity.this.setResult(CommonConstant.GOTO_MINDER_FLAGMENT, intent);
-                        CreateMinderActivity.this.finish();
-                        mHandler.sendEmptyMessage(1);
+                        mHandler.sendEmptyMessage(2);
                     }
                 }).start();
                 break;

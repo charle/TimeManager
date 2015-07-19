@@ -57,7 +57,7 @@ public class EditTagActivity extends BaseActivity {
         initData();
     }
 
-    private void afterView() {
+    protected void afterView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
     }

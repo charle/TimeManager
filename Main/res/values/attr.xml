@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="icon" format="reference"></attr>
-    <attr name="color" format="color"></attr>
-    <attr name="text" format="string"></attr>
-    <attr name="text_size" format="dimension"></attr>
+    <attr name="icon" format="reference"/>
+    <attr name="color" format="color"/>
+    <attr name="text" format="string"/>
+    <attr name="text_size" format="dimension"/>
 
+    <attr name="color_no_finger_inner_circle" format="color"/>
+    <attr name="color_no_finger_outer_circle" format="color"/>
+    <attr name="color_finger_on" format="color"/>
+    <attr name="color_finger_up" format="color"/>
+    <attr name="count" format="integer"/>
+    <attr name="tryTimes" format="integer"/>
     <declare-styleable name="ChangeColorIconWithText">
         <attr name="icon"></attr>
         <attr name="color"></attr>
@@ -15,5 +21,18 @@
 
     <declare-styleable name="swipelistviewstyle">
         <attr name="right_width" format="dimension"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ClipImageStyle">
+        <attr name="src" format="reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="GestureLockViewGroup">
+        <attr name="color_no_finger_inner_circle"/>
+        <attr name="color_no_finger_outer_circle"/>
+        <attr name="color_finger_on"/>
+        <attr name="color_finger_up"/>
+        <attr name="count"/>
+        <attr name="tryTimes"/>
     </declare-styleable>
 </resources>

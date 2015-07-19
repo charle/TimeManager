@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.jing.du.Main.Activity.CreateMinderActivity;
 import com.jing.du.Main.Activity.DetailMinderActivity;
 import com.jing.du.Main.Adapter.MinderAdapter;
+import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.Model.Minder;
 import com.jing.du.Main.R;
 import com.jing.du.Main.ViewHolder.MinderViewHolder;
@@ -127,11 +128,18 @@ public class MinderFragment extends ListFragment implements CommonInit {
                     list.remove(position);
                     adapter.notifyDataSetChanged();
                 }
+                if (resultCode == CommonConstant.GOTO_MINDER_FLAGMENT_CHANGE) {
+                    int position = data.getIntExtra("position", 0);
+                    Minder tempMinder = (Minder)data.getSerializableExtra("minder");
+                    list.remove(position);
+                    list.add(position,tempMinder);
+                    adapter.notifyDataSetChanged();
+                }
                 break;
             case CommonConstant.GOTO_CREATE_MINDER:
                 if (resultCode == CommonConstant.GOTO_MINDER_FLAGMENT) {
-                    Minder minder = (Minder)data.getSerializableExtra("minder");
-                    list.add(0,minder);
+                    Minder minder = (Minder) data.getSerializableExtra("minder");
+                    list.add(0, minder);
                     adapter.notifyDataSetChanged();
                 }
             default:

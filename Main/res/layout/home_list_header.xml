@@ -17,17 +17,15 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/home_bg"/>
 
-        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+        <ImageView
                 android:id="@+id/iv_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/padding80"
+                android:layout_height="@dimen/padding80"
                 android:layout_below="@id/iv_bg"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/padding_large_negtive"
                 android:layout_marginRight="@dimen/padding_medium"
-                bootstrap:bt_width="@dimen/padding80"
-                bootstrap:bt_height="@dimen/padding80"
-                bootstrap:bt_image="@drawable/home_profile"/>
+                android:src="@drawable/default_profile"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +42,7 @@
 
         <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/tv_sentence"
                 android:textSize="@dimen/textsize_small"
                 android:layout_marginLeft="@dimen/padding_medium"
@@ -53,6 +51,7 @@
                 android:layout_below="@id/iv_profile"
                 android:singleLine="true"
                 android:ellipsize="end"
+                android:gravity="right"
                 android:text="@string/sample_text"/>
     </RelativeLayout>
 

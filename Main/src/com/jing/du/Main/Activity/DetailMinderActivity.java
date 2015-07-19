@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class DetailMinderActivity extends BaseActivity {
     private int minderId;
     private Minder mindder;
     private int position;
+    private boolean isDataChanged = false;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -62,7 +64,7 @@ public class DetailMinderActivity extends BaseActivity {
         setContentView(R.layout.layout_minder_detail);
         ButterKnife.inject(this);
         minderId = getIntent().getIntExtra("minder_id", 0);
-        position = getIntent().getIntExtra("position",0);
+        position = getIntent().getIntExtra("position", 0);
         ActionBar actionBar = getActionBar();
         actionBar.show();
         initData();
@@ -93,11 +95,11 @@ public class DetailMinderActivity extends BaseActivity {
             case R.id.action_edit:
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putInt("minder_id",minderId);
+                bundle.putInt("minder_id", minderId);
                 intent.putExtras(bundle);
                 intent.setClass(this, CreateMinderActivity.class);
                 startActivityForResult(intent, CommonConstant.GOTO_CREATE_MINDER);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.action_delete:
                 dialog();
@@ -120,7 +122,7 @@ public class DetailMinderActivity extends BaseActivity {
                 Intent intent = DetailMinderActivity.this.getIntent();
                 DetailMinderActivity.this.setResult(CommonConstant.GOTO_MINDER_FLAGMENT, intent);
                 DetailMinderActivity.this.finish();
-                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -135,14 +137,36 @@ public class DetailMinderActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case CommonConstant.GOTO_CREATE_MINDER:
-                if(resultCode==CommonConstant.GOTO_MINDER_FLAGMENT){
-                    mindder = (Minder)data.getSerializableExtra("minder");
+                if (resultCode == CommonConstant.GOTO_MINDER_FLAGMENT) {
+                    mindder = (Minder) data.getSerializableExtra("minder");
+                    isDataChanged = true;
                     mHandler.sendEmptyMessage(1);
                 }
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (isDataChanged) {
+                    Intent intent = DetailMinderActivity.this.getIntent();
+                    intent.putExtra("minder", mindder);
+                    DetailMinderActivity.this.setResult(CommonConstant.GOTO_MINDER_FLAGMENT_CHANGE, intent);
+                    DetailMinderActivity.this.finish();
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                } else {
+                    DetailMinderActivity.this.finish();
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                }
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
 

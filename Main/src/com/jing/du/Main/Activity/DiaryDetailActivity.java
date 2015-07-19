@@ -160,9 +160,10 @@ public class DiaryDetailActivity extends BaseActivity {
                 if (resultCode == CommonConstant.GOTO_DIARY_DETAIL ||
                         requestCode == CommonConstant.GOTO_HOME_FLAGMENT_FROM_EDIT_DIARY) {
                     Diary tempDairy = (Diary) data.getSerializableExtra("diary");
+                    diary.setWeatherType(tempDairy.getWeatherType());
+                    diary.setAddress(tempDairy.getAddress());
                     diary.getDiaryItemArrayList().clear();
                     diary.getDiaryItemArrayList().addAll(tempDairy.getDiaryItemArrayList());
-                    tempDairy = null;
                     refeshView();
                     diaryChanged = true;
                 }

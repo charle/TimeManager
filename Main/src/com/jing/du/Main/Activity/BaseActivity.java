@@ -18,12 +18,17 @@ public class BaseActivity extends Activity{
         return super.onKeyDown(keyCode, event);
     }
 
-    public void initData(){
+    protected void initData(){
 
     }
 
-    public void initEvent(){
+    protected void initEvent(){
 
     }
+
+    protected void initActionBar(){
+
+    }
+
 }
 

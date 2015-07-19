@@ -2,8 +2,10 @@ package com.jing.du;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import com.jing.du.Main.Model.User;
 import com.jing.du.Main.R;
 import com.jing.du.common.utils.Log;
+import com.jing.du.common.utils.StringUtils;
 import org.litepal.LitePalApplication;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
@@ -13,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * Created by charle-chen on 15/6/21.
@@ -23,6 +26,8 @@ public class MainApplication extends LitePalApplication {
     private static final String DB_NAME = "du_time.db";
     private Context context;
     public static boolean dataLoaded = false;
+    public static User user = null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,16 +58,31 @@ public class MainApplication extends LitePalApplication {
                         myOutput.flush();
                         myOutput.close();
                         myInput.close();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    }finally {
+                    } finally {
                         dataLoaded = true;
+                    }
+
+                    List<User> userList = DataSupport.findAll(User.class, true);
+                    if (!StringUtils.isListEmpty(userList)) {
+                        user = userList.get(0);
                     }
                 }
             }).start();
-        }else{
+        } else {
             dataLoaded = true;
         }
 
+    }
+
+    public static User getUser() {
+        if (user == null) {
+            List<User> userList = DataSupport.findAll(User.class, true);
+            if (!StringUtils.isListEmpty(userList)) {
+                user = userList.get(0);
+            }
+        }
+        return user;
     }
 }
