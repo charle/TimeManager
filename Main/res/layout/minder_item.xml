@@ -32,8 +32,8 @@
                     android:layout_height="wrap_content"/>
             <ImageView
                     android:id="@+id/iv_minde_clock"
-                    android:layout_width="@dimen/padding40"
-                    android:layout_height="@dimen/padding40"
+                    android:layout_width="@dimen/padding30"
+                    android:layout_height="@dimen/padding30"
                     android:src="@drawable/clock_gray"
                     android:scaleType="fitXY"/>
         </LinearLayout>

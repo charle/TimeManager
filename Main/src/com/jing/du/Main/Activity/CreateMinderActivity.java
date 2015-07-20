@@ -147,7 +147,9 @@ public class CreateMinderActivity extends BaseActivity {
                             minder.setTitle(etMinderTitle.getText().toString());
                             minder.setContent(etMinderContent.getText().toString());
                             minder.setMinderType(minderTypeSpinnerId);
-                            minder.setMindTime(dateTimePicKDialog.getMindTime());
+                            if(!StringUtils.isObjectEmpty(dateTimePicKDialog)){
+                                minder.setMindTime(dateTimePicKDialog.getMindTime());
+                            }
                             minder.setMindOrNotMind(svLock.getSwitchStatus() ? 1 : 0);
                             minder.save();
                         }
