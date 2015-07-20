@@ -16,15 +16,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1">
-        <TextView
-                android:id="@+id/tv_minder_title"
+        <LinearLayout
                 android:layout_width="fill_parent"
-                android:textSize="@dimen/textsize16"
-                android:text="@string/default_text"
-                android:padding="@dimen/padding_micro"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                    android:id="@+id/tv_minder_title"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/textsize16"
+                    android:text="@string/default_text"
+                    android:padding="@dimen/padding_micro"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_height="wrap_content"/>
+            <ImageView
+                    android:id="@+id/iv_minde_clock"
+                    android:layout_width="@dimen/padding40"
+                    android:layout_height="@dimen/padding40"
+                    android:src="@drawable/clock_gray"
+                    android:scaleType="fitXY"/>
+        </LinearLayout>
+
 
         <TextView
                 android:id="@+id/tv_minder_create_time"

@@ -86,5 +86,7 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
+
+        <receiver android:name=".Service.AlarmReceiver"/>
     </application>
 </manifest>

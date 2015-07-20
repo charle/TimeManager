@@ -113,4 +113,8 @@ public class CommonConstant {
 
     public static final String PROFILE_PATH="/sdcard/TimeMananger/header.jpg";
 
+    public static final int RESOUCE_CLOCK = R.drawable.clock;
+    public static final int RESOUCE_GRAY_CLOCK = R.drawable.clock_gray;
+    public static final int[] RESOUCE_MIND_CLOCK = {RESOUCE_GRAY_CLOCK,RESOUCE_CLOCK};
+
 }

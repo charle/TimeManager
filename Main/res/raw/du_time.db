@@ -23,8 +23,8 @@ INSERT INTO diaryitem (id, endtime, begintime, note, tag_id, diary_id, category_
 INSERT INTO diaryitem (id, endtime, begintime, note, category_id, diary_id, tag_id) VALUES (4, '17:30', '09:30', '', 1, 2, 1);
 INSERT INTO diaryitem (id, endtime, begintime, note, category_id, diary_id, tag_id) VALUES (5, '22:25', '19:00', '', 2, 2, 10);
 INSERT INTO diaryitem (id, endtime, begintime, note, category_id, diary_id, tag_id) VALUES (6, '08:00', '07:00', '', 3, 2, 5);
-INSERT INTO minder (id, createtime, content, title, mindertype) VALUES (1, 1436801224697, '打电话', '张三生日', 1);
-INSERT INTO minder (id, createtime, content, title, mindertype) VALUES (2, 1436801288666, '香山会议室', '团队会议', 0);
-INSERT INTO minder (id, createtime, content, title, mindertype) VALUES (3, 1436883838228, '7:20', '朋友聚会', 2);
+INSERT INTO minder (id, createtime, content, title, mindertype,mindtime,mindornotmind) VALUES (1, 1436801224697, '打电话', '张三生日', 1,1436801224697,0);
+INSERT INTO minder (id, createtime, content, title, mindertype,mindtime,mindornotmind) VALUES (2, 1436801288666, '香山会议室', '团队会议', 0,1436801288666,0);
+INSERT INTO minder (id, createtime, content, title, mindertype,mindtime,mindornotmind) VALUES (3, 1436883838228, '7:20', '朋友聚会', 2,1436883838228,0);
 INSERT INTO user (id, sign, password, nickname) VALUES (1, '好好学习，天天向上，循序渐进，持之以恒','','Android-Developer');
 

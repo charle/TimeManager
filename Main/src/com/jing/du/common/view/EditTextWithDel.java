@@ -1,6 +1,9 @@
 package com.jing.du.common.view;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -19,6 +22,7 @@ public class EditTextWithDel extends EditText {
     private Drawable imgInable;
     private Drawable imgAble;
     private Context mContext;
+    private Paint mPaint;
 
     public EditTextWithDel(Context context) {
         super(context);
@@ -39,6 +43,9 @@ public class EditTextWithDel extends EditText {
     }
 
     private void init() {
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(Color.GREEN);
         imgInable = mContext.getResources().getDrawable(R.drawable.delete_gray);
         imgAble = mContext.getResources().getDrawable(R.drawable.edit_delete);
         addTextChangedListener(new TextWatcher() {
@@ -87,4 +94,9 @@ public class EditTextWithDel extends EditText {
         super.finalize();
     }
 
+    @Override
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawLine(0, this.getHeight() - 1, this.getWidth() - 1, this.getHeight() - 1, mPaint);
+    }
 }

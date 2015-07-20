@@ -15,6 +15,8 @@ public class Minder extends DataSupport implements Serializable{
     private String title;
     private String content;
     private int minderType;
+    private Date mindTime;
+    private int mindOrNotMind;
 
     public int getId() {
         return id;
@@ -54,5 +56,21 @@ public class Minder extends DataSupport implements Serializable{
 
     public void setMinderType(int minderType) {
         this.minderType = minderType;
+    }
+
+    public Date getMindTime() {
+        return mindTime;
+    }
+
+    public void setMindTime(Date mindTime) {
+        this.mindTime = mindTime;
+    }
+
+    public int getMindOrNotMind() {
+        return mindOrNotMind;
+    }
+
+    public void setMindOrNotMind(int mindOrNotMind) {
+        this.mindOrNotMind = mindOrNotMind;
     }
 }

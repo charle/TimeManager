@@ -36,6 +36,7 @@ public class MinderAdapter extends MyBaseAdapter {
             myBaseHolder.views[0] = (TextView) convertView.findViewById(R.id.tv_minder_title);
             myBaseHolder.views[1] = (TextView) convertView.findViewById(R.id.tv_minder_create_time);
             myBaseHolder.views[2] = (ImageView) convertView.findViewById(R.id.iv_minder_type);
+            myBaseHolder.views[3] = (ImageView) convertView.findViewById(R.id.iv_minde_clock);
             convertView.setTag(myBaseHolder);
         }
 
@@ -45,6 +46,7 @@ public class MinderAdapter extends MyBaseAdapter {
         ((TextView) myBaseHolder.views[1]).setText(DateUtils.getSecondOfDate(minder.getCreatetime()));
         ((TextView) myBaseHolder.views[1]).setTextColor(CommonConstant.MINDER_COLOR[minder.getMinderType()]);
         ((ImageView) myBaseHolder.views[2]).setImageResource(CommonConstant.MINDER_RESOUCE[minder.getMinderType()]);
+        ((ImageView) myBaseHolder.views[3]).setImageResource(CommonConstant.RESOUCE_MIND_CLOCK[minder.getMindOrNotMind()]);
         return convertView;
     }
 }

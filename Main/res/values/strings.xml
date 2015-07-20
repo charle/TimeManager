@@ -62,5 +62,6 @@
     <string name="menu_delete_category">删除分类</string>
     <string name="menu_edit_category">编辑分类</string>
     <string name="menu_save_tag">保存标签</string>
+    <string name="set_alarm_time">设置闹钟时间</string>
 
 </resources>

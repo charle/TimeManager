@@ -23,6 +23,7 @@ import com.jing.du.Main.Activity.EditSignActivity;
 import com.jing.du.Main.Activity.SetPasswordActivity;
 import com.jing.du.Main.Model.Diary;
 import com.jing.du.Main.Model.DiaryItem;
+import com.jing.du.Main.Model.Minder;
 import com.jing.du.Main.Model.User;
 import com.jing.du.Main.R;
 import com.jing.du.MainApplication;
@@ -120,7 +121,31 @@ public class SettingFragment extends Fragment implements CommonInit {
             }
         });
 
-        TableRow evernoteRow = (TableRow) mainView.findViewById(R.id.tr_sign);
+        TableRow outPutEventRow = (TableRow) mainView.findViewById(R.id.tr_output_event);
+        outPutEventRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<Minder> minders = DataSupport.findAll(Minder.class, true);
+                        OutputDb db = new OutputDb();
+                        StringBuffer stringBuffer = new StringBuffer();
+                        for (Minder minder :minders) {
+                            HashMap<String, String> data = new HashMap<String, String>();
+                            data.put("createt_time", DateUtils.getStringOfDate(minder.getCreatetime()));
+                            data.put("title", minder.getTitle());
+                            data.put("content", minder.getContent());
+                            stringBuffer.append(db.replace("## ${createt_time} ${title}", data, true));
+                            stringBuffer.append(db.replace("- ${content}", data, true));
+                            stringBuffer.append(System.getProperty("line.separator"));
+                        }
+                        db.writeDocument("event.md", stringBuffer.toString(), false);
+                        mHandler.sendEmptyMessage(1);
+                    }
+                }).start();
+            }
+        });
         ImageView ivProfile = (ImageView) mainView.findViewById(R.id.iv_profile);
         Bitmap bitmap = getLoacalBitmap(CommonConstant.PROFILE_PATH);
         if (!StringUtils.isObjectEmpty(bitmap)) {

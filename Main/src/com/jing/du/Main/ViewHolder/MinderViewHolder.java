@@ -10,12 +10,13 @@ import com.jing.du.common.view.MyBaseHolder;
  */
 public class MinderViewHolder extends MyBaseHolder {
     private TextView textView1,textView2;
-    private ImageView imageView;
+    private ImageView imageView1,imageView2;
 
     public MinderViewHolder() {
-        views = new View[3];
+        views = new View[4];
         views[0] = textView1;
         views[1] = textView2;
-        views[2] = imageView;
+        views[2] = imageView1;
+        views[3] = imageView2;
     }
 }

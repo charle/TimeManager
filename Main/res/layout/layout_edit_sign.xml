@@ -5,8 +5,10 @@
               android:layout_height="match_parent">
 
     <com.jing.du.common.view.EditTextWithDel
+            android:layout_marginTop="@dimen/padding_small"
             android:id="@+id/et_sign"
             android:layout_width="fill_parent"
+            android:background="@null"
             android:layout_height="wrap_content"/>
 
 </LinearLayout>
