@@ -72,3 +72,11 @@
     + 导出日记
     
 ![](images/setting.png)
+
+- 设置密码页
+
+![](images/set_password.png)
+
+- 编辑个性签名页
+
+![](images/edit_sign.png)
