@@ -68,7 +68,7 @@ public class SetPasswordActivity extends BaseActivity {
     public void initData() {
         super.initData();
         user = MainApplication.getUser();
-        if (!StringUtils.isObjectEmpty(user)) {
+        if (!StringUtils.isObjectEmpty(user) && !StringUtils.isEmpty(user.getPassword())) {
             changePassword = true;
             passwordWarn.setText("请输入原始密码");
         } else {
