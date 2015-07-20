@@ -100,6 +100,7 @@ public class EditDiaryItemActivity extends BaseActivity {
     private void afterInitView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         etBeginTime.setText(diaryItem.getBeginTime());
         etEndTime.setText(diaryItem.getEndTime());
         etNotice.setText(diaryItem.getNote());
@@ -112,16 +113,16 @@ public class EditDiaryItemActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                categoryList = DataSupport.findAll(Category.class,true);
+                categoryList = DataSupport.findAll(Category.class, true);
                 for (int i = 0; i < categoryList.size(); i++) {
-                    if (categoryList.get(i).getName().trim().equals(diaryItem.getCategory().getName())){
-                        firstSelected=i;
+                    if (categoryList.get(i).getName().trim().equals(diaryItem.getCategory().getName())) {
+                        firstSelected = i;
                         break;
                     }
                 }
-                for(int j=0;j< categoryList.get(firstSelected).getTagList().size();j++){
-                    if(categoryList.get(firstSelected).getTagList().get(j).getName().equals(diaryItem.getTag().getName())){
-                        secondSelected=j;
+                for (int j = 0; j < categoryList.get(firstSelected).getTagList().size(); j++) {
+                    if (categoryList.get(firstSelected).getTagList().get(j).getName().equals(diaryItem.getTag().getName())) {
+                        secondSelected = j;
                     }
                 }
                 mHandler.sendEmptyMessage(1);
@@ -211,6 +212,10 @@ public class EditDiaryItemActivity extends BaseActivity {
                 EditDiaryItemActivity.this.setResult(CommonConstant.GOTO_EDIT_DIARY, intent);
                 EditDiaryItemActivity.this.finish();
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             default:
                 break;

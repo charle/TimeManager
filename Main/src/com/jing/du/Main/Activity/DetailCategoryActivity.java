@@ -78,7 +78,7 @@ public class DetailCategoryActivity extends BaseActivity {
     private void afterView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
-
+        actionBar.setDisplayHomeAsUpEnabled(true);
         btAddTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +127,7 @@ public class DetailCategoryActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (category.getDefaultType() == CommonConstant.CATEGORY_ANOTHER) {
+        if (!StringUtils.isObjectEmpty(category) && category.getDefaultType() == CommonConstant.CATEGORY_ANOTHER) {
             getMenuInflater().inflate(R.menu.category_detail, menu);
         } else {
             getMenuInflater().inflate(R.menu.category_detail_default, menu);
@@ -153,6 +153,11 @@ public class DetailCategoryActivity extends BaseActivity {
                 intent.setClass(this, EditCategoryActivity.class);
                 startActivityForResult(intent, CommonConstant.GOTO_EDIT_CATEGORY);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                break;
             default:
                 break;
         }

@@ -1,9 +1,12 @@
 package com.jing.du.Main.Activity;
 
+import android.app.ActionBar;
 import android.content.ContentValues;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -56,6 +59,9 @@ public class SetPasswordActivity extends BaseActivity {
     }
 
     private void afterView() {
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -142,7 +148,7 @@ public class SetPasswordActivity extends BaseActivity {
                         public void run() {
                             String str = "";
                             for (int i = 0; i < firstPassword.size(); i++) {
-                                str += firstPassword.get(i)+ ",";
+                                str += firstPassword.get(i) + ",";
                             }
                             str = str.substring(0, str.length() - 1);
                             ContentValues values = new ContentValues();
@@ -158,5 +164,21 @@ public class SetPasswordActivity extends BaseActivity {
             }
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                break;
+        }
+        return super.onMenuItemSelected(featureId, item);
     }
 }

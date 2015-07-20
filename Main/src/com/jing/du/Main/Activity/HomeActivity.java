@@ -3,12 +3,14 @@ package com.jing.du.Main.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
 import com.jing.du.Main.Model.User;
 import com.jing.du.Main.R;
 import com.jing.du.MainApplication;
+import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.view.GestureLockViewGroup;
 
@@ -23,7 +25,10 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = MainApplication.getUser();
-        if (!StringUtils.isObjectEmpty(user)) {
+        SharedPreferences sp = getSharedPreferences("setting", 0);
+        boolean locked = sp.getBoolean("locked",false);
+        Log.d("locked state is "+locked);
+        if (locked && !StringUtils.isObjectEmpty(user)&&!StringUtils.isEmpty(user.getPassword())) {
             setContentView(R.layout.layout_set_password);
             afterView();
             convertPasswordToInteger();
@@ -37,8 +42,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void afterView() {
-        passwordWarn = (TextView)findViewById(R.id.password_warn);
-        gestureLock = (GestureLockViewGroup)findViewById(R.id.gesture_lock);
+        passwordWarn = (TextView) findViewById(R.id.password_warn);
+        gestureLock = (GestureLockViewGroup) findViewById(R.id.gesture_lock);
         passwordWarn.setText("请输入密码");
     }
 
@@ -62,6 +67,7 @@ public class HomeActivity extends BaseActivity {
                         if (!matched) {
                             passwordWarn.setText("输入密码错误，请重新输入");
                         } else {
+                            passwordWarn.setText("恭喜密码输入正确");
                             Intent intent = new Intent();
                             intent.setClass(HomeActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -94,7 +100,7 @@ public class HomeActivity extends BaseActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             dialog();
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 
     protected void dialog() {

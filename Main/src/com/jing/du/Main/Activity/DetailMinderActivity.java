@@ -67,6 +67,7 @@ public class DetailMinderActivity extends BaseActivity {
         position = getIntent().getIntExtra("position", 0);
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initData();
     }
 
@@ -103,6 +104,10 @@ public class DetailMinderActivity extends BaseActivity {
                 break;
             case R.id.action_delete:
                 dialog();
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             default:
                 break;

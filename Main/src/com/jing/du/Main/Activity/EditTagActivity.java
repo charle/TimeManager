@@ -60,6 +60,7 @@ public class EditTagActivity extends BaseActivity {
     protected void afterView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -114,6 +115,10 @@ public class EditTagActivity extends BaseActivity {
                     finish();
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
         }
         return true;

@@ -2,6 +2,7 @@ package com.jing.du.Main.FragmentView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import butterknife.ButterKnife;
@@ -31,6 +33,7 @@ import com.jing.du.common.utils.DateUtils;
 import com.jing.du.common.utils.Log;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.utils.Toast;
+import com.jing.du.common.view.SwitchView;
 import org.litepal.crud.DataSupport;
 
 import java.io.FileInputStream;
@@ -125,15 +128,31 @@ public class SettingFragment extends Fragment implements CommonInit {
         }
         ivProfile.setOnClickListener(clickEvent);
 
-        TableRow signRow = (TableRow) mainView.findViewById(R.id.tr_sign);
+        final TableRow signRow = (TableRow) mainView.findViewById(R.id.tr_sign);
         signRow.setOnClickListener(clickEvent);
 
         TextView nickName = (TextView) mainView.findViewById(R.id.tv_nickname);
         nickName.setOnClickListener(clickEvent);
 
-        TableRow passwordRow = (TableRow) mainView.findViewById(R.id.tr_password);
+        LinearLayout passwordRow = (LinearLayout) mainView.findViewById(R.id.tr_password);
         passwordRow.setOnClickListener(clickEvent);
 
+        SwitchView lock_switch = (SwitchView) mainView.findViewById(R.id.lock_switch);
+        final SharedPreferences sp = getActivity().getSharedPreferences("setting", 0);
+        lock_switch.setSwitchStatus(sp.getBoolean("locked", false));
+        lock_switch.setOnSwitchChangeListener(new SwitchView.OnSwitchChangeListener() {
+            @Override
+            public void onSwitchChanged(boolean open) {
+                SharedPreferences.Editor editor = sp.edit();
+                if (open) {
+                    editor.putBoolean("locked", true);
+                    editor.commit();
+                } else {
+                    editor.putBoolean("locked", false);
+                    editor.commit();
+                }
+            }
+        });
         mHandler.sendEmptyMessage(3);
     }
 

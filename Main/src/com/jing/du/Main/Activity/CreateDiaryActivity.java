@@ -133,6 +133,7 @@ public class CreateDiaryActivity extends BaseActivity {
     private void afterInitView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initData();
     }
 
@@ -275,6 +276,10 @@ public class CreateDiaryActivity extends BaseActivity {
                     CreateDiaryActivity.this.finish();
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             default:
                 break;

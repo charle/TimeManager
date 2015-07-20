@@ -97,6 +97,7 @@ public class EditDiaryActivity extends BaseActivity {
 
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     //使用数组形式操作
@@ -138,7 +139,7 @@ public class EditDiaryActivity extends BaseActivity {
                 Intent intent = EditDiaryActivity.this.getIntent().putExtra("diary", diary);
                 EditDiaryActivity.this.setResult(CommonConstant.GOTO_DIARY_DETAIL, intent);
                 EditDiaryActivity.this.finish();
-                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             case R.id.action_add:
                 Intent intent1 = new Intent();
@@ -146,6 +147,10 @@ public class EditDiaryActivity extends BaseActivity {
                 intent1.setClass(EditDiaryActivity.this, CreateDiaryActivity.class);
                 startActivityForResult(intent1, CommonConstant.GOTO_CREATE_DIARY);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                break;
             default:
                 break;
         }

@@ -61,6 +61,7 @@ public class DiaryDetailActivity extends BaseActivity {
     private void afterView() {
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initData();
     }
 
@@ -122,6 +123,10 @@ public class DiaryDetailActivity extends BaseActivity {
             case R.id.action_delete:
                 dialog();
                 break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                break;
             default:
                 break;
         }
@@ -140,7 +145,7 @@ public class DiaryDetailActivity extends BaseActivity {
                 Intent intent = DiaryDetailActivity.this.getIntent();
                 DiaryDetailActivity.this.setResult(CommonConstant.GOTO_HOME_FLAGMENT, intent);
                 DiaryDetailActivity.this.finish();
-                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

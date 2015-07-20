@@ -1,6 +1,7 @@
 package com.jing.du;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import com.jing.du.Main.Model.User;
 import com.jing.du.Main.R;

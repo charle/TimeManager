@@ -24,13 +24,12 @@ import com.jing.du.common.adapter.MyListEditAdapter;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.StringUtils;
 import com.jing.du.common.utils.Toast;
-import com.jing.du.common.view.InputDialog;
 import org.litepal.crud.DataSupport;
 
 /**
  * Created by charle-chen on 15/7/14.
  */
-public class EditCategoryActivity extends BaseActivity{
+public class EditCategoryActivity extends BaseActivity {
 
     @InjectView(R.id.et_category)
     EditText etCategory;
@@ -70,6 +69,7 @@ public class EditCategoryActivity extends BaseActivity{
         }
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -135,6 +135,10 @@ public class EditCategoryActivity extends BaseActivity{
                     finish();
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
         }
         return true;

@@ -215,7 +215,7 @@ public class MainActivity extends FragmentActivity implements
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             dialog();
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 
     protected void dialog() {

@@ -71,6 +71,7 @@ public class CreateMinderActivity extends BaseActivity {
         spMinderType.setSelection(0, true);
         ActionBar actionBar = getActionBar();
         actionBar.show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initData();
     }
 
@@ -130,6 +131,10 @@ public class CreateMinderActivity extends BaseActivity {
                         mHandler.sendEmptyMessage(2);
                     }
                 }).start();
+                break;
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 break;
             default:
                 break;
