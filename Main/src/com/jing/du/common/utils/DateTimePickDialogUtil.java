@@ -97,7 +97,6 @@ public class DateTimePickDialogUtil implements OnDateChangedListener,
 				.setPositiveButton("设置", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						inputDate.setText(dateTime);
-						mindTime = new Date();
 					}
 				})
 				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -123,7 +122,7 @@ public class DateTimePickDialogUtil implements OnDateChangedListener,
 				datePicker.getDayOfMonth(), timePicker.getCurrentHour(),
 				timePicker.getCurrentMinute());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-
+		mindTime = calendar.getTime();
 		dateTime = sdf.format(calendar.getTime());
 		ad.setTitle(dateTime);
 	}

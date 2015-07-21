@@ -86,7 +86,12 @@
                 android:screenOrientation="portrait"
                 android:theme="@android:style/Theme.DeviceDefault.Light">
         </activity>
+        <activity
+                android:name=".Activity.DialogActivity"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.DeviceDefault.Dialog">
+        </activity>
 
-        <receiver android:name=".Service.AlarmReceiver"/>
+        <receiver android:name=".Service.AlarmReceiver" android:process=":remote"/>
     </application>
 </manifest>

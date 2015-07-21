@@ -1,7 +1,10 @@
 package com.jing.du.Main.Activity;
 
 import android.app.ActionBar;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +22,7 @@ import butterknife.OnItemSelected;
 import com.beardedhen.androidbootstrap.FontAwesomeText;
 import com.jing.du.Main.Model.Minder;
 import com.jing.du.Main.R;
+import com.jing.du.Main.Service.AlarmReceiver;
 import com.jing.du.common.constant.CommonConstant;
 import com.jing.du.common.utils.DateTimePickDialogUtil;
 import com.jing.du.common.utils.DateUtils;
@@ -49,6 +53,7 @@ public class CreateMinderActivity extends BaseActivity {
     private int minderTypeSpinnerId = 0;
     private Minder minder;
     private int minderId;
+    private AlarmManager alarmManager = null;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -134,6 +139,9 @@ public class CreateMinderActivity extends BaseActivity {
                             if (!StringUtils.isObjectEmpty(dateTimePicKDialog)) {
                                 values.put("mindtime", dateTimePicKDialog.getMindTime().getTime());
                                 minder.setMindTime(dateTimePicKDialog.getMindTime());
+                            } else {
+                                values.put("mindtime", DateUtils.getTimeAfterOneHour().getTime());
+                                minder.setMindTime(DateUtils.getTimeAfterOneHour());
                             }
                             values.put("mindornotmind", svLock.getSwitchStatus() ? 1 : 0);
                             DataSupport.update(Minder.class, values, minder.getId());
@@ -147,11 +155,23 @@ public class CreateMinderActivity extends BaseActivity {
                             minder.setTitle(etMinderTitle.getText().toString());
                             minder.setContent(etMinderContent.getText().toString());
                             minder.setMinderType(minderTypeSpinnerId);
-                            if(!StringUtils.isObjectEmpty(dateTimePicKDialog)){
+                            if (!StringUtils.isObjectEmpty(dateTimePicKDialog)) {
                                 minder.setMindTime(dateTimePicKDialog.getMindTime());
+                            } else {
+                                minder.setMindTime(DateUtils.getTimeAfterOneHour());
                             }
                             minder.setMindOrNotMind(svLock.getSwitchStatus() ? 1 : 0);
                             minder.save();
+                        }
+
+                        Intent intent = new Intent(CreateMinderActivity.this, AlarmReceiver.class);
+                        intent.putExtra("minder_id",minder.getId());
+                        PendingIntent pi = PendingIntent.getBroadcast(CreateMinderActivity.this, minder.getId(), intent, 0);
+                        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        if (svLock.getSwitchStatus()) {
+                            alarmManager.set(AlarmManager.RTC_WAKEUP, minder.getMindTime().getTime(), pi);
+                        } else {
+                            alarmManager.cancel(pi);
                         }
                         mHandler.sendEmptyMessage(2);
                     }

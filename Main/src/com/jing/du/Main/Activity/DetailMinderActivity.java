@@ -17,6 +17,7 @@ import butterknife.InjectView;
 import com.jing.du.Main.Model.Minder;
 import com.jing.du.Main.R;
 import com.jing.du.common.constant.CommonConstant;
+import com.jing.du.common.utils.DateUtils;
 import org.litepal.crud.DataSupport;
 
 /**
@@ -32,6 +33,8 @@ public class DetailMinderActivity extends BaseActivity {
     ImageView ivMinderType;
     @InjectView(R.id.tv_minder_type)
     TextView tvMinderType;
+    @InjectView(R.id.tv_alarm_time)
+    TextView tvAlarmTime;
 
     private int minderId;
     private Minder mindder;
@@ -45,6 +48,7 @@ public class DetailMinderActivity extends BaseActivity {
                 case 1:
                     tvMinderTitle.setText(mindder.getTitle());
                     tvMinderContent.setText(mindder.getContent());
+                    tvAlarmTime.setText(DateUtils.getSecondOfDate(mindder.getMindTime()));
                     ivMinderType.setImageResource(CommonConstant.MINDER_RESOUCE[mindder.getMinderType()]);
                     tvMinderType.setText(CommonConstant.MINDER_STATE[mindder.getMinderType()]);
                     tvMinderType.setTextColor(CommonConstant.MINDER_COLOR[mindder.getMinderType()]);

@@ -1,5 +1,7 @@
 package com.jing.du.common.utils;
 
+import android.widget.RelativeLayout;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,5 +44,13 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         String str = sdf.format(date);
         return str;
+    }
+
+    public static Date getTimeAfterOneHour() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());   //设置当前日期
+        c.add(Calendar.HOUR, 1);
+        Date date = c.getTime();
+        return date;
     }
 }

@@ -31,4 +31,5 @@
     <dimen name="padding100">100dp</dimen>
     <dimen name="padding150">150dp</dimen>
     <dimen name="padding200">200dp</dimen>
+    <dimen name="padding300">300dp</dimen>
 </resources>

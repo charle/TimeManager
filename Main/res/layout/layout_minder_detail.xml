@@ -38,7 +38,27 @@
 
     </LinearLayout>
 
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_micro"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mind_alarm_time"/>
 
+        <TextView
+                android:id="@+id/tv_alarm_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_small"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/alarm_clock"
+                android:drawablePadding="@dimen/padding_micro"
+                android:text="@string/default_text"/>
+    </LinearLayout>
     <ImageView
             android:layout_width="fill_parent"
             android:layout_height="1px"

@@ -63,5 +63,8 @@
     <string name="menu_edit_category">编辑分类</string>
     <string name="menu_save_tag">保存标签</string>
     <string name="set_alarm_time">设置闹钟时间</string>
+    <string name="mind_alarm_time">事件提醒时间</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_ok">详情</string>
 
 </resources>
