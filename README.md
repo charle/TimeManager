@@ -66,6 +66,11 @@
     
 ![](images/minder_detail.png)
 
+- 事件闹钟提醒
+    + 点击可查看详情事件
+    
+![](images/minder_alert.png)
+ 
 - 设置页
     + 主要是个人信息管理
     + 进入密码管理
